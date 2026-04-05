@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit Password</title>
+    <link rel="stylesheet" th:href="@{/css/editform2.css}">
+</head>
+<body>
+<div class="container">
+    <div class="flash-container" th:if="${messages != null}">
+        <div th:each="msg : ${messages}"
+             th:class="'flash ' + ${msg.type}"
+             th:text="${msg.text}">
+        </div>
+    </div>
+    <form th:action="@{/edit-password}" th:object="${form}" method="post">
+        <h2 class="form-title">Edit Password</h2>
+        <p class="form-sub">Set a new password</p>
+        <p class="form-row">
+            <input type="hidden" th:field="*{userId}" />
+            <label th:for="*{password}">New Password</label><br>
+            <input type="password" th:field="*{password}" class="form-control" autocomplete="off" placeholder="Enter new password">
+            <span th:each="err : ${#fields.errors('password')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p class="form-row">
+            <label th:for="*{confirmPassword}">Re-enter Password</label><br>
+            <input type="password" th:field="*{confirmPassword}" class="form-control" autocomplete="off" placeholder="Re-enter new password">
+            <span th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}" style="color:red"></span>
+            <span th:each="err : ${#fields.errors('passwordConfirmed')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p><button type="submit">Update</button></p>
+        <a class="back-link" th:href="@{/profile}">Back</a>
+    </form>
+</div>
+<script th:src="@{/js/particle.js}"></script>
+
+</body>
+</html>

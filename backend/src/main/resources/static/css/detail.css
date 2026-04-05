@@ -1,0 +1,197 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --secondary-bg: #1a1a1a;
+    --accent-color: #00d4aa;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --hover-glow: rgba(0, 212, 170, 0.3);
+    --positive-color: #00d4aa;
+    --negative-color: #ff6b6b;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+html{
+    overscroll-behavior: none;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 20px;
+    perspective: 1200px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding: 40px 50px;
+    border-radius: var(--border-radius);
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 90vw;
+    max-width: 800px;
+    z-index: 10;
+}
+h1 {
+    font-size: 3rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color:#00d4aa;
+}
+h2,h3{
+    color: #00ffcc;
+}
+h2, h3 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    position: static;
+    left: auto;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 700px;
+    opacity: 0.95;
+}
+button{
+    border: none;
+}
+button.py{
+    display: inline-block;
+    margin-top: 20px;
+    width: 120px;
+    padding: 12px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-align: center;
+    background: #00aeff;
+    color: white;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+button.py:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px 1px #00eeff;
+    background: rgb(0, 213, 255);
+    color: white;
+}
+button.java{
+    display: inline-block;
+    margin-top: 20px;
+    width: 120px;
+    padding: 12px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-align: center;
+    background: #ff4e4e;
+    color: white;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+button.java:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px 1px #ff0000;
+    background: rgb(255, 0, 0);
+    color: white;
+}
+
+a.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    width: 120px;
+    padding: 12px 0;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-align: center;
+    background: #ff3838;
+    color: white;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+a.back-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px 1px #ff0000;
+    background: red;
+}
+.particle {
+    position: fixed;
+    width: 13px;
+    height: 13px;
+    background: white;
+    opacity: 0.3;
+    z-index: 1;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+
+/*animista*/
+.slide-in-right {
+	-webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" th:href="@{/css/signup.css}">
+</head>
+<body>
+<div class="container slide-in-elliptic-bottom-fwd">
+    <div class="flash-container" th:if="${messages != null}">
+        <div th:each="msg : ${messages}"
+             th:class="'flash ' + ${msg.type}"
+             th:text="${msg.text}">
+        </div>
+    </div>
+    <form th:action="@{/signup}" th:object="${form}" method="post">
+        <h2 class="form-title">Sign Up</h2>
+        <p class="form-row">
+            <label th:for="*{name}">Name</label><br>
+            <input type="text" th:field="*{name}" class="form-control" autocomplete="off" placeholder="Enter your name">
+            <span th:each="err : ${#fields.errors('name')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p class="form-row">
+            <label th:for="*{email}">Email</label><br>
+            <input type="email" th:field="*{email}" class="form-control" autocomplete="off" placeholder="Enter your email">
+            <span th:each="err : ${#fields.errors('email')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p class="form-row">
+            <label th:for="*{password}">Password</label><br>
+            <input type="password" th:field="*{password}" class="form-control" autocomplete="off" placeholder="Enter your password">
+            <span th:each="err : ${#fields.errors('password')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p th:if="${error}" th:text="${error}" style="color:red"></p>
+        <p><button type="submit">Signup</button></p>
+        <p>Already have a Account?
+            <a class="tp" th:href="@{/login}">Login</a>
+        </p>
+        <a class="back-link" th:href="@{/}">Back</a>
+    </form>
+</div>
+<script th:src="@{/js/particle.js}"></script>
+
+</body>
+</html>

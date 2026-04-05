@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="container slide-in-elliptic-bottom-fwd">
+    <div class="flash-container" th:if="${messages != null}">
+        <div th:each="msg : ${messages}" th:class="'flash ' + ${msg.type}" th:text="${msg.text}">
+        </div>
+    </div>
+    <form th:action="@{/login}" th:object="${form}" method="post">
+        <h2 class="form-title">Login</h2>
+        <p class="form-sub">Access your dashboard</p>
+        <p>
+            <label th:for="*{email}">Email</label><br>
+            <input type="email" th:field="*{email}" class="form-control" autocomplete="off" placeholder="Enter your email">
+            <br>
+            <span th:each="err : ${#fields.errors('email')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p>
+            <label th:for="*{password}">Password</label><br>
+            <input type="password" th:field="*{password}" class="form-control" autocomplete="off" placeholder="Enter your password">
+            <br>
+            <span th:each="err : ${#fields.errors('password')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p><button type="submit">Login</button></p>
+        <p>Don't have a Account yet?
+            <a class="tp" th:href="@{/signup}">Sign Up</a>
+        </p>
+        <a class="back-link" th:href="@{/}">Back</a>
+    </form>
+</div>
+<script th:src="@{/js/particle.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+:root {
+    --bg-main: #0b0f14;
+    --bg-card: #121826;
+    --accent: #6ae3ff;
+    --text-main: #e6e9ef;
+    --text-muted: #9aa4b2;
+    --border-soft: rgba(255,255,255,0.08);
+}
+html{
+    overscroll-behavior: none;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #101728, #000511);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+    color: var(--text-main);
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 40px 45px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: fadeUp 0.6s ease;
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin-bottom: 18px;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.meta {
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    font-size: 0.95rem;
+}
+
+.content {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.content p {
+    margin-bottom: 14px;
+}
+
+.content a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
+.back-btn {
+    margin-top: 35px;
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+    background: transparent;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all .25s ease;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 0 20px rgba(106,227,255,0.5);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ffd5, #00bfff);
+    border-radius: 10px;
+}
+
+.particle {
+    position: fixed;
+    width: 13px;
+    height: 13px;
+    background: white;
+    opacity: 0.3;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}

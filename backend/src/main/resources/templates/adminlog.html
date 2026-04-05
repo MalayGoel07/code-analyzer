@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - JobTracker</title>
+    <link rel="stylesheet" th:href="@{/css/adminlog.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="badge">Restricted Access</div>
+        <h1>Admin Login</h1>
+        <p>Enter admin email and password to login.</p>
+
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+
+        <form th:action="@{/admin/login}" method="post">
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Admin Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn">Admin Login</button>
+        </form>
+
+        <div class="link-group">
+            <a th:href="@{/}" class="back-link">Back to Welcome</a>
+            <a th:href="@{/login}" class="back-link secondary-link">User Login</a>
+        </div>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

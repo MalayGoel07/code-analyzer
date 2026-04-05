@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Code Compare</title>
+    <link rel="stylesheet" th:href="@{/css/compare.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="div1">
+            <h1>Deep Code Comparison</h1>
+            <div class="mode-toggle">
+                <button type="button" id="fileModeBtn">Use File Input</button>
+                <button type="button" id="textModeBtn">Use Text Input</button>
+            </div>
+            <form th:action="@{/compare}" method="post" enctype="multipart/form-data">
+                <div id="uploadSection" class="mode-section">
+                    <label>File 1:</label>
+                    <input type="file" name="file1" accept=".java,.py,.txt">
+                    <label>File 2:</label>
+                    <input type="file" name="file2" accept=".java,.py,.txt">
+                </div>
+                <div id="pasteSection" class="mode-section hidden">
+                    <label>Code 1:</label>
+                    <textarea name="code1" placeholder="Paste first code here..."></textarea>
+                    <label>Code 2:</label>
+                    <textarea name="code2" placeholder="Paste second code here..."></textarea>
+                </div>
+                <button type="submit">Compare</button>
+                <a class="back-link" th:href="@{/home}"> Back</a>
+            </form>
+        </div>
+        <div class="div2">
+            <h3>Analysis Result</h3>
+            <textarea readonly
+                th:text="${result != null ? result : 'Upload two files and click Compare to view analysis.'}">
+            </textarea>
+        </div>
+    </div>
+    <script th:src="@{/js/compare.js}"></script>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

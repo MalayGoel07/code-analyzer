@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/card.css}">
+    <title>Deep Compare</title>
+</head>
+<body>
+    <div class="container tilt-in-fwd-tr">
+        <div class="div1">
+            <h1>Deep Compare</h1>
+            <h2>Smarter similarity detection</h2>
+            <p>
+                Compare files with token and structure-aware matching to catch subtle reuse.
+                This helps instructors and teams flag suspicious overlap with higher confidence.
+            </p>
+            <h3>How it helps</h3>
+            <p>
+                Run pairwise or batch comparisons, then inspect matches with context to confirm intent.
+                Clean reporting keeps results easy to review.
+            </p>
+        </div>
+        <div class="div2">
+            <a class="back-link" th:href="@{/compare}">Compare Files</a>
+            <a class="back-link" th:href="@{/home}">Back</a>
+        </div>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

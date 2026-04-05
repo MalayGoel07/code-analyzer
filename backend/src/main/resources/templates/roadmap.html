@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap Builder</title>
+    <link rel="stylesheet" th:href="@{/css/roadmap.css}">
+</head>
+<body>
+    <div class="roadmap-page">
+        <header class="hero-card">
+            <div>
+                <a class="back-link" th:href="@{/home}">Back</a>
+                <h1>Roadmap Builder</h1>
+                <p>Create a simple learning roadmap from your current year, main language, and specialization interest.</p>
+            </div>
+        </header>
+
+        <section class="panel form-panel">
+            <h2>Build Your Plan</h2>
+            <form id="roadmapBuilderForm" class="roadmap-form">
+                <label for="year">Year</label>
+                <select id="year" name="year" required>
+                    <option value="1st Year">1st Year</option>
+                    <option value="2nd Year">2nd Year</option>
+                    <option value="3rd Year">3rd Year</option>
+                    <option value="4th Year">4th Year</option>
+                </select>
+
+                <label for="language">Main Language</label>
+                <select id="language" name="language" required>
+                    <option value="Python">Python</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                </select>
+
+                <label for="specialization">Interest Specialization</label>
+                <select id="specialization" name="specialization" required>
+                    <option value="DSA">DSA</option>
+                    <option value="ML">ML</option>
+                    <option value="DL">DL</option>
+                    <option value="Web Development">Web Development</option>
+                </select>
+
+                <button type="submit" class="primary-btn">Generate Roadmap</button>
+            </form>
+        </section>
+
+        <section class="panel output-panel">
+            <h2>Your Roadmap</h2>
+            <div id="roadmapOutput" class="roadmap-output">
+                <p class="empty-text">Fill the form to generate your roadmap.</p>
+            </div>
+        </section>
+
+        <section class="panel resources-panel">
+            <div class="section-head">
+                <h2>Recommended Resources</h2>
+                <p>Simple hand-picked suggestions based on your selection.</p>
+            </div>
+            <div id="resourceCards" class="resource-grid">
+                <article class="resource-card placeholder-card">
+                    <h3>Waiting for input</h3>
+                    <p>Generate the roadmap to see the resource cards here.</p>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <script th:src="@{/js/roadmap.js}"></script>
+</body>
+</html>

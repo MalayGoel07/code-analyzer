@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/detail.css}">
+    <title>Detail</title>
+</head>
+<body>
+    <div class="container slide-in-right">
+        <h1>Detail View</h1>
+        <p>
+            Drill into specific languages, explore their features, history,
+            and understand how they work in real-world systems.
+        </p>
+        <h2>In Depth Analysis</h2>
+        <div class="lang-buttons">
+            <button class="py" onclick="openLanguage('python')">Python 🐍</button>
+            <button class="java" onclick="openLanguage('java')">Java ☕</button>
+        </div>
+        <br>
+        <a class="back-link" th:href="@{/home}"> Back</a>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+    <script th:src="@{/js/detail.js}"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${language}">Language</title>
+    <link rel="stylesheet" th:href="@{/css/language.css}">
+</head>
+<body>
+    <div class="container">
+        <h1 id="title"></h1>
+        <div class="meta">Programming Language Overview</div>
+        <div class="content" id="output"></div>
+        <a th:href="@{/detail}" class="back-btn">Back</a>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+    <script th:src="@{/js/wiki.js}"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --secondary-bg: #1a1a1a;
+    --text-main: #ffffff;
+    --text-muted: #b0b0b0;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --accent: #00d4aa;
+    --danger: #ff6b6b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    color: var(--text-main);
+    padding: 34px 20px;
+}
+
+.page-shell {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-card {
+    padding: 28px;
+    margin-bottom: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: var(--accent);
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+h1 {
+    margin-bottom: 12px;
+    font-size: clamp(2.1rem, 4vw, 3rem);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.action-card {
+    min-height: 180px;
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-main);
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 212, 170, 0.4);
+    box-shadow: 0 0 18px rgba(0, 212, 170, 0.18);
+}
+
+.action-card h2 {
+    margin-bottom: 12px;
+}
+
+.action-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.logout-card:hover {
+    border-color: rgba(255, 107, 107, 0.4);
+    box-shadow: 0 0 18px rgba(255, 107, 107, 0.18);
+}
+
+.particle {
+    position: fixed;
+    width: 13px;
+    height: 13px;
+    background: white;
+    opacity: 0.3;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}

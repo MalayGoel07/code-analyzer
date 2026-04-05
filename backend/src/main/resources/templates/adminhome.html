@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/adminhome.css}">
+    <title>Admin Home</title>
+</head>
+<body>
+    <main class="page-shell">
+        <section class="hero-card">
+            <p class="eyebrow">Admin Panel</p>
+            <h1>Admin Home</h1>
+            <p class="subtitle">Manage the daily problem flow and jump quickly to the tools you need.</p>
+        </section>
+
+        <section class="action-grid">
+            <a class="action-card" th:href="@{/admin/profile}">
+                <h2>Profile</h2>
+                <p>Open profile details and account information.</p>
+            </a>
+            <a class="action-card" th:href="@{/admin/problems/new}">
+                <h2>Add Problem Statements</h2>
+                <p>Upload the daily question and keep past questions saved.</p>
+            </a>
+            <a class="action-card logout-card" th:href="@{/admin/logout}">
+                <h2>Logout</h2>
+                <p>End the admin session safely.</p>
+            </a>
+        </section>
+    </main>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

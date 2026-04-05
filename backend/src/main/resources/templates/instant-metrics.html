@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/instant-metrics.css}">
+    <title>Practice Problems</title>
+</head>
+<body>
+    <main class="page-shell">
+        <section class="hero-card">
+            <p class="eyebrow">Daily Practice</p>
+            <h1>Practice Problems</h1>
+            <p class="subtitle">Solve the latest uploaded question, then scroll through older saved problems whenever you want extra practice.</p>
+        </section>
+
+        <section class="problem-layout" th:if="${problems != null and !#lists.isEmpty(problems)}">
+            <section class="card latest-problem">
+                <div class="section-head">
+                    <h2>Today's Problem</h2>
+                    <p>The newest problem added by admin appears here first.</p>
+                </div>
+
+                <div class="problem-badges">
+                    <span th:text="${problems[0].topic}">Arrays</span>
+                    <span th:text="${problems[0].difficulty}">Medium</span>
+                    <span th:text="${#temporals.format(problems[0].createdAt, 'dd MMM yyyy, hh:mm a')}">21 Mar 2026</span>
+                </div>
+
+                <h3 th:text="${problems[0].title}">Problem title</h3>
+                <p class="statement" th:text="${problems[0].statement}">Problem statement</p>
+            </section>
+
+            <section class="card archive-section">
+                <div class="section-head">
+                    <h2>Saved Problems</h2>
+                    <p>Previously uploaded questions stay here for revision and repeated practice.</p>
+                </div>
+
+                <div class="archive-list">
+                    <article class="archive-item" th:each="problem, iter : ${problems}" th:if="${iter.index > 0}">
+                        <div class="archive-meta">
+                            <span th:text="${problem.topic}">Topic</span>
+                            <span th:text="${problem.difficulty}">Difficulty</span>
+                            <span th:text="${#temporals.format(problem.createdAt, 'dd MMM yyyy')}">Date</span>
+                        </div>
+                        <h3 th:text="${problem.title}">Older problem title</h3>
+                        <p th:text="${problem.statement}">Older problem statement</p>
+                    </article>
+                </div>
+            </section>
+        </section>
+
+        <section class="card empty-state" th:if="${problems == null or #lists.isEmpty(problems)}">
+            <h2>No Problems Yet</h2>
+            <p>The admin has not uploaded a practice problem yet. Check back later for the daily question.</p>
+        </section>
+
+        <div class="action-row">
+            <a class="action-btn secondary" th:href="@{/home}">Back Home</a>
+        </div>
+    </main>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+    <div class="main-container swing-in-top-fwd">
+        <div class="top-left">
+            <h1>Welcome to Coan-X🚀</h1>
+            <p>Analyze complexity, plagiarism and quality of your code instantly.</p>
+        </div>
+        <div class="top-right">
+            <a class="btn-6" th:href="@{/profile}">Profile</a>
+            <a class="btn-3" th:href="@{/about}">About</a>
+            <a class="btn-4" th:href="@{/feedback}">Feedback</a>
+        </div>
+        <div class="center-left">
+            <a class="btn-1" th:href="@{/code-comp}">Code Complexcity</a>
+            <a class="btn-7" th:href="@{/SandboxCompiler}">Sandbox Compiler</a>
+            <a class="btn-5" href="/login">Logout</a>
+        </div>
+        <a class="side-card" th:href="@{/detail}">
+            <div>
+                <h3>Details</h3>
+                <p>Open the detailed view and insights about programming languages.</p>
+            </div>
+            <span>View detail</span>
+        </a>
+        <div class="bottom-cards">
+            <a class="bottom-card" th:href="@{/instant-metrics}">
+                <div>
+                    <h3>Practice Problem</h3>
+                    <p>Get daily Question here.</p>
+                </div>
+            </a>
+            <a class="bottom-card" th:href="@{/deep-compare}">
+                <div>
+                    <h3>Deep Compare</h3>
+                    <p>Detect similarity across files with robust matching.</p>
+                </div>
+            </a>
+            <a class="bottom-card" th:href="@{/roadmap}">
+                <div>
+                    <h3>Roadmap</h3>
+                    <p>Build a simple year-wise roadmap with language and specialization guidance.</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

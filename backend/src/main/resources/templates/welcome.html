@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/welcome.css}">
+    <title>Welcome</title>
+</head>
+<body>
+    <div class="container bounce-in-top">
+        <h1>Coan-X🚀</h1>
+        <p class="subtitle">Manage Code, know complexity and analysis easily</p>
+        <div class="actions">
+            <a class="btn primary" th:href="@{/login}">Login</a>
+            <a class="btn success" th:href="@{/signup}">Sign Up</a>
+            <a class="btn admin" th:href="@{/adminlog}">Admin Login</a>
+            <a class="btn about" th:href="@{/welabout}">About Us</a>
+        </div>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

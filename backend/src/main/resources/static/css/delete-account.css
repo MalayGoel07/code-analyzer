@@ -1,0 +1,127 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --secondary-bg: hsl(0, 0%, 10%);
+    --accent-color: #00d4aa;
+    --text-color: #ffffff;
+    --text-secondary: #b0b0b0;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --hover-glow: rgba(0, 212, 152, 0.3);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+html{
+    overscroll-behavior: none;
+}
+body{
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container {
+    width: 100%;
+    max-width: 520px;
+}
+form {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: fadeIn .5s ease;
+}
+.title {
+    margin: 0 0 8px;
+    font-size: 1.7rem;
+}
+.subtitle {
+    margin: 0 0 20px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+.warning-box {
+    background: rgba(255, 107, 107, 0.08);
+    border: 1px solid rgba(255, 107, 107, 0.4);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    margin-bottom: 22px;
+}
+.warning-box p {
+    margin: 0 0 10px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--card-border);
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+input[type="text"]:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.25);
+}
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.cancel-link {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--card-border);
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.05);
+}
+.cancel-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+.delete-btn {
+    background: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.delete-btn:hover {
+    background: #ff0800;
+    box-shadow: 0 0 12px rgba(255, 8, 0, 0.35);
+}
+@keyframes fadeIn {
+    from { opacity:0; transform: translateY(20px); }
+    to { opacity:1; transform: translateY(0); }
+}
+.particle {
+    position: fixed;
+    width: 13px;
+    height: 13px;
+    background: white;
+    opacity: 0.3;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}

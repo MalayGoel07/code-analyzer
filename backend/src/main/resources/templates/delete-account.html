@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/delete-account.css}">
+    <title>Delete Account</title>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/profile/delete}" method="post">
+            <h2 class="title">Confirm Account Deletion</h2>
+            <p class="subtitle">This action is permanent and cannot be undone.</p>
+            <div class="warning-box">
+                <p>Type <strong>DELETE</strong> to confirm:</p>
+                <input type="text" name="confirmText" required pattern="DELETE" placeholder="DELETE">
+            </div>
+            <div class="actions">
+                <a th:href="@{/profile}" class="cancel-link">Cancel</a>
+                <button type="submit" class="delete-btn">Delete My Account</button>
+            </div>
+        </form>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

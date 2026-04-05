@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/admin-profile.css}">
+    <title>Admin Profile</title>
+</head>
+<body>
+    <main class="page-shell">
+        <section class="profile-card">
+            <p class="eyebrow">Admin Profile</p>
+            <h1>Administrator</h1>
+            <p class="subtitle">This page shows the currently configured admin account used for the protected admin flow.</p>
+
+            <div class="info-block">
+                <span class="label">Email</span>
+                <p th:text="${adminEmail}">admin@example.com</p>
+            </div>
+        </section>
+
+        <div class="action-row">
+            <a class="action-btn" th:href="@{/adminhome}">Back to Admin Home</a>
+            <a class="action-btn secondary" th:href="@{/admin/logout}">Logout</a>
+        </div>
+    </main>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

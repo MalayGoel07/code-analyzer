@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit Name</title>
+    <link rel="stylesheet" th:href="@{/css/editform1.css}">
+</head>
+<body>
+<div class="container">
+    <div class="flash-container" th:if="${messages != null}">
+        <div th:each="msg : ${messages}"
+             th:class="'flash ' + ${msg.type}"
+             th:text="${msg.text}">
+        </div>
+    </div>
+    <form th:action="@{/edit-name}" th:object="${form}" method="post">
+        <h2 class="form-title">Edit Name</h2>
+        <p class="form-sub">Update your display name</p>
+        <p class="form-row">
+            <input type="hidden" th:field="*{userId}" />
+            <label th:for="*{name}">Name</label><br>
+            <input type="text" th:field="*{name}" class="form-control" autocomplete="off" placeholder="Enter your new name">
+            <span th:each="err : ${#fields.errors('name')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <p><button type="submit">Update</button></p>
+        <a class="back-link" th:href="@{/profile}">Back</a>
+    </form>
+</div>
+<script th:src="@{/js/particle.js}"></script>
+
+</body>
+</html>

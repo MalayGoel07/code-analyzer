@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/add-problem.css}">
+    <title>Add Problem Statement</title>
+</head>
+<body>
+    <main class="page-shell">
+        <section class="card form-card">
+            <div class="section-head">
+                <p class="eyebrow">Admin Upload</p>
+                <h1>Add Problem Statement</h1>
+                <p>Upload the latest problem here. Older problems will remain saved automatically.</p>
+            </div>
+
+            <div th:if="${message}" class="message success" th:text="${message}"></div>
+
+            <form th:action="@{/admin/problems}" th:object="${problem}" method="post" class="problem-form">
+                <label for="title">Problem title</label>
+                <input id="title" type="text" th:field="*{title}" placeholder="Example: Two Sum Variation">
+
+                <label for="topic">Topic</label>
+                <input id="topic" type="text" th:field="*{topic}" placeholder="Arrays, DSA, ML, Flask">
+
+                <label for="difficulty">Difficulty</label>
+                <select id="difficulty" th:field="*{difficulty}">
+                    <option value="">Select difficulty</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+
+                <label for="statement">Problem statement</label>
+                <textarea id="statement" th:field="*{statement}" rows="10" placeholder="Write the complete problem statement here"></textarea>
+
+                <div class="error-list" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}">Validation message</p>
+                </div>
+
+                <button type="submit">Save Problem</button>
+            </form>
+        </section>
+
+        <div class="action-row">
+            <a class="action-btn" th:href="@{/adminhome}">Back to Admin Home</a>
+            <a class="action-btn secondary" th:href="@{/instant-metrics}">View Practice Problems</a>
+        </div>
+    </main>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <title>Profile</title>
+</head>
+<body>
+    <div class="profile-container">
+        <section class="profile-header">
+            <div class="avatar">Avatar</div>
+            <div class="user-info">
+                <h1 th:text="${user.name}">User Name</h1>
+                <p th:text="${user.email}">email@example.com</p>
+            </div>
+        </section>
+        <section class="personal-info-card">
+            <h2>Personal Information</h2>
+            <div class="info-field">
+                <label>Full Name</label>
+                <input type="text" th:value="${user.name}" readonly>
+            </div>
+            <div class="info-field">
+                <label>Email</label>
+                <input type="email" th:value="${user.email}" readonly>
+            </div>
+            <a th:href="@{/editform1}" class="edit">Edit</a>
+        </section>
+        <section class="security-section">
+            <h2>Security</h2>
+            <div class="security-item">
+                <label>Change Password</label>
+                <a th:href="@{/editform2}" class="edit">Edit</a>
+            </div>
+        </section>
+        <section class="danger-zone">
+            <h2>Danger Zone</h2>
+            <form th:action="@{/profile/delete}" method="get">
+                <button type="submit" class="delete-btn">Delete Account</button>
+            </form>
+        </section>
+        <a th:href="@{/home}" class="logout-button">Back</a>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>

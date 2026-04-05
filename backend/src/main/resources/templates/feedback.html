@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Feedback</title>
+    <link rel="stylesheet" th:href="@{/css/feedback.css}">
+</head>
+<body>
+<div class="container ">
+    <div class="flash-container" th:if="${messages != null}">
+        <div th:each="msg : ${messages}" th:class="'flash ' + ${msg.type}" th:text="${msg.text}"></div>
+    </div>
+    <form th:action="@{/feedback}" th:object="${form}" method="post">
+        <h2 class="form-title">Feedback</h2>
+        <p class="form-sub">Give your Feedback</p>
+        <br>
+        <p>
+            <label th:for="*{email}">Email</label><br>
+            <input type="email" th:field="*{email}" class="form-control" autocomplete="off" placeholder="Enter your email">
+            <br>
+            <span th:each="err : ${#fields.errors('email')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <br>
+        <p>
+            <label th:for="*{message}">Feedback</label><br>
+            <textarea th:field="*{message}" class="form-control" rows="4" autocomplete="off" placeholder="Share your feedback"></textarea>
+            <br>
+            <span th:each="err : ${#fields.errors('message')}" th:text="${err}" style="color:red"></span>
+        </p>
+        <br>
+        <p><button class="btn-1" type="submit">Submit</button></p>
+        <a class="btn-2" th:href="@{/home}">Back</a>
+    </form>
+</div>
+<script th:src="@{/js/particle.js}"></script>
+
+</body>
+</html>

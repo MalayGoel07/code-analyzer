@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/target/
+__pycache__/
+*.pyc

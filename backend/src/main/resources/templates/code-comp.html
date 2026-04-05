@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/code-comp.css}">
+    <title>Code complexcity check</title>
+</head>
+<body>
+    <h1>Code complexcity check</h1>
+    <div class="div0">
+        <div class="div1">
+            <form th:action="@{/analyze}" method="post">
+                <p><textarea name="code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Paste your code here" th:text="${code}"></textarea></p>
+                <select name="language">
+                    <option value="java" th:selected="${language == 'java'}">Java</option>
+                    <option value="python" th:selected="${language == 'python'}">Python</option>
+                </select>
+                <button type="submit">Analyze</button>
+            </form>
+        </div>
+        <div class="div2">
+            <h3>Analysis Result</h3>
+            <div class="div3"><label>Lines</label><input type="text" th:value="${result != null ? result.lines : 0}" readonly></div>
+            <div class="div3"><label>Words</label><input type="text" th:value="${result != null ? result.words : 0}" readonly></div>
+            <div class="div3"><label>If Statements</label><input type="text" th:value="${result != null ? result.ifCount : 0}" readonly></div>
+            <div class="div3"><label>Loops</label><input type="text" th:value="${result != null ? result.loopCount : 0}" readonly></div>
+            <div class="div3"><label>Functions</label><input type="text" th:value="${result != null ? result.functionCount : 0}" readonly></div>
+            <div class="div3"><label>Classes</label><input type="text" th:value="${result != null ? result.classCount : 0}" readonly></div>
+            <div class="div3"><label>Time Complexity</label><input type="text" th:value="${result != null ? result.timeComplexity : 'N/A'}" readonly></div>
+            <div class="div3"><label>Space Complexity</label><input type="text" th:value="${result != null ? result.spaceComplexity : 'N/A'}" readonly></div>
+            <div class="div3"><label>Cyclomatic Complexity</label><input type="text" th:value="${result != null ? result.cyclomaticComplexity : 'N/A'}" readonly></div>
+            <div class="div3"><label>maxNestingDepth</label><input type="text" th:value="${result != null ? result.maxNestingDepth : 0}" readonly></div>
+            <a class="back-link" th:href="@{/home}"> Back</a>
+        </div>
+    </div>
+    <script th:src="@{/js/particle.js}"></script>
+</body>
+</html>
