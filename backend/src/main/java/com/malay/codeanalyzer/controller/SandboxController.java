@@ -22,7 +22,7 @@ public class SandboxController {
         return "SandboxCompiler";
     }
 
-    @PostMapping
+    @PostMapping("/SandboxCompiler")
     public String run(@RequestParam String code,@RequestParam String language,Model model) {
         String output = jdoodleService.runCode(code, language);
         model.addAttribute("code", code);

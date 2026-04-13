@@ -1,6 +1,7 @@
 package com.malay.codeanalyzer.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -8,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LanguageController {
 
     @GetMapping("/language")
-    public String languagePage(@RequestParam String name) {
+    public String languagePage(@RequestParam String name, Model model) {
+        model.addAttribute("language", name);
         return "language";
     }
 }

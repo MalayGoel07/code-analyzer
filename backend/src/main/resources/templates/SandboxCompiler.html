@@ -9,7 +9,7 @@
 <body>
     <div class="div0">
         <div class="div1">
-            <form th:action="@{/?}" method="post">
+            <form th:action="@{/SandboxCompiler}" method="post">
                 <p><textarea name="code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Paste your code here" th:text="${code}"></textarea></p>
                 <select name="language">
                     <option value="java" th:selected="${language == 'java'}">Java</option>

@@ -48,7 +48,7 @@ public class HomeController {
 
     @GetMapping("/code-para")
     public String codePara() {
-        return "code-para";
+        return "code-comp";
     }
 
     @GetMapping("/about")

@@ -9,13 +9,16 @@ import java.util.Map;
 
 @Service
 public class JdoodleService {
-    @Value("${JDOODLE_CLIENT_ID}")
+    @Value("${JDOODLE_CLIENT_ID:}")
     private String clientId;
 
-    @Value("${JDOODLE_CLIENT_SECRET}")
+    @Value("${JDOODLE_CLIENT_SECRET:}")
     private String clientSecret;
 
     public String runCode(String code, String language) {
+        if (clientId == null || clientId.isBlank() || clientSecret == null || clientSecret.isBlank()) {
+            return "JDoodle credentials are not configured.";
+        }
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://api.jdoodle.com/v1/execute";
@@ -34,7 +37,14 @@ public class JdoodleService {
             request.put("versionIndex", "3");
         }
 
-        Map response = restTemplate.postForObject(url, request, Map.class);
-        return response.get("output").toString();
+        try {
+            Map response = restTemplate.postForObject(url, request, Map.class);
+            if (response == null || response.get("output") == null) {
+                return "JDoodle did not return any output.";
+            }
+            return response.get("output").toString();
+        } catch (Exception ex) {
+            return "Unable to run code right now. Please try again later.";
+        }
     }
 }
