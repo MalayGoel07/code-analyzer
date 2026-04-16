@@ -1,22 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/welcome.css}">
-    <title>Welcome</title>
+    <title>Coan-X</title>
+    <style>body {background: radial-gradient(circle at top, #0f172a, #020617);}</style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {}
+          }
+        }
+      }
+    </script>
 </head>
-<body>
-    <div class="container bounce-in-top">
-        <h1>Coan-X🚀</h1>
-        <p class="subtitle">Manage Code, know complexity and analysis easily</p>
-        <div class="actions">
-            <a class="btn primary" th:href="@{/login}">Login</a>
-            <a class="btn success" th:href="@{/signup}">Sign Up</a>
-            <a class="btn admin" th:href="@{/adminlog}">Admin Login</a>
-            <a class="btn about" th:href="@{/welabout}">About Us</a>
-        </div>
+<body class="text-white font-mono min-h-screen">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Coan-X 🚀</div>
+            <div class="space-x-6 text-sm">
+                <a th:href="@{/welabout}" class="no-underline hover:text-cyan-400 transition cursor-pointer">About</a>
+                <a th:href="@{/signup}" class="no-underline text-green-300 hover:text-green-400 transition cursor-pointer">Sign Up</a>
+                <a th:href="@{/login}" class="no-underline text-blue-300 hover:text-blue-400 transition cursor-pointer">Login</a>
+            </div>
+    </nav>
+    <section class="flex flex-col items-center justify-center text-center mt-20 px-6">
+        <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Coding Analytics & Orchestrator Tool</h1>
+        <p class="mt-3 text-gray-400 text-sm italic">"Without Test u cant fetch the fest!"</p>
+        <p class="mt-4 text-gray-500 max-w-xl text-sm">Analyze code complexity, compare performance, and integrate AI workflows —all in one developer-centric platform.</p>
+    </section>
+    <div class="flex justify-center gap-4 mt-10">
+        <a th:href="@{/signup}" class="no-underline px-6 py-2 bg-cyan-600 hover:bg-cyan-500 rounded-lg shadow-lg shadow-cyan-500/30 transition cursor-pointer">Try It Out</a>
+        <a th:href="@{/#}" class="no-underline px-6 py-2 border border-purple-500 text-purple-400 hover:bg-purple-500/20 rounded-lg transition cursor-pointer">▶ Live Demo</a>
     </div>
-    <script th:src="@{/js/particle.js}"></script>
+
+    <section class="mt-10 px-8 grid gap-8 md:grid-cols-3">
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 transition duration-300 shadow-lg">
+            <h2 class="text-lg font-semibold text-cyan-400">Code Analyzer</h2>
+            <p class="text-gray-400 text-sm mt-2">Get time & space complexity insights instantly. Optimize your logic like a pro.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 transition duration-300 shadow-lg">
+            <h2 class="text-lg font-semibold text-green-400">Comparator</h2>
+            <p class="text-gray-400 text-sm mt-2">Compare multiple algorithms and visualize performance differences clearly.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 transition duration-300 shadow-lg">
+            <h2 class="text-lg font-semibold text-purple-400">AI Integration</h2>
+            <p class="text-gray-400 text-sm mt-2">Use AI agents to analyze, suggest improvements, and automate code workflows.</p>
+        </div>
+    </section>
+    <a th:href="@{/adminlog}" class="no-underline fixed bottom-16 right-6 px-4 py-2 bg-red-700 hover:bg-red-600 text-white text-sm rounded-lg shadow-lg shadow-red-500/30 transition cursor-pointer">🔐 Admins</a>
+    <a th:href="@{/feedback}" class="no-underline fixed bottom-6 right-6 px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white text-sm rounded-lg shadow-lg shadow-blue-500/30 transition cursor-pointer">Feedback</a>
 </body>
 </html>

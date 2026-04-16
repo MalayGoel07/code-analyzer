@@ -1,124 +1,116 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/about.css}">
     <title>Malay Goel</title>
+    <style>
+        body { background: radial-gradient(circle at top, #0f172a, #020617); }
+        .carousel-track { display: flex; gap: 1.5rem; animation: scroll 30s linear infinite; width: max-content; }
+        .carousel-track:hover { animation-play-state: paused; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <div class="main tilt-in-fwd-tr">
-        <div class="div1">
-            <h1>Malay Goel</h1>
-            <div class="nav-links">
-                <a href="#">About</a>
-                <a href="#">Work</a>
-                <a href="#">Contact</a>
-            </div>
+<body class="text-white font-mono min-h-screen">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg sticky top-0 z-50">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Malay Goel</div>
+        <div class="space-x-6 text-sm">
+            <a th:href="@{/#contact}" class="no-underline hover:text-green-400 transition cursor-pointer">Contact</a>
+            <a th:href="@{/login}" class="no-underline hover:text-blue-400 transition cursor-pointer">Login</a>
         </div>
-        <div class="div2">
-            <h2>Hi, I'm Malay Goel</h2>
-            <p>
-                <br>
-                I'm a Computer Science student and Python & java focused developer who enjoys building practical, real-world applications.
-                <br>
-                I specialize in backend development using Flask and Spring Boot, and I actively practice Data Structures & Algorithms to strengthen my problem-solving skills.
-                <br>
-                Currently exploring Machine Learning and FastAPI while continuously improving through hands-on projects.
+    </nav>
+    <section class="flex flex-col md:flex-row items-center justify-between gap-10 mt-2 px-12 max-w-6xl mx-auto">
+        <div class="flex-1 text-left">
+            <p class="text-cyan-400 text-sm uppercase tracking-widest mb-2">👋 Hello!</p>
+            <h2 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent leading-tight">
+                Hi, I'm Malay Goel
+            </h2>
+            <p class="mt-2 text-green-400 text-sm font-semibold tracking-wide">CS Student · Backend Developer · AI Enthusiast</p>
+            <p class="mt-6 text-gray-400 text-sm leading-relaxed">
+                I'm a Computer Science student and <span class="text-white font-semibold">Python & Java</span> focused developer who enjoys building practical, real-world applications.
             </p>
-            <div class="image">
-                <img th:src="@{/images/profile.jpg}" alt="Malay Goel">
+            <p class="mt-3 text-gray-400 text-sm leading-relaxed">
+                I specialize in backend development using <span class="text-white font-semibold">Flask</span> and <span class="text-white font-semibold">Spring Boot</span>, and I actively practice <span class="text-white font-semibold">Data Structures & Algorithms</span> to strengthen my problem-solving skills.
+            </p>
+            <p class="mt-3 text-gray-400 text-sm leading-relaxed">
+                Currently exploring <span class="text-white font-semibold">Machine Learning</span> and <span class="text-white font-semibold">FastAPI</span> while continuously improving through hands-on projects.
+            </p>
+        </div>
+        <div class="flex-shrink-0">
+            <div class="relative w-48 h-48 md:w-60 md:h-60">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-cyan-500 via-blue-500 to-purple-500 blur-md opacity-50"></div>
+                <img th:src="@{/images/profile.jpg}" class="relative w-full h-full object-cover rounded-full border-2 border-white/20 shadow-xl">
             </div>
         </div>
-        <div class="div3">
-            <h4>My Skill Stack</h4>
-            <div class="carousel">
-                <div class="skills-container" style="--quantity:6">
-                    <div class="skill-category" style="--position:1">
-                        <h3>Programming Languages</h3>
-                        <ul>
-                            <li>Python</li>
-                            <li>Java</li>
-                            <li>JavaScript</li>
-                        </ul>
+    </section>
+
+    <div class="mt-20 px-8 max-w-6xl mx-auto">
+        <h4 class="text-center text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-2">My Skill Stack</h4>
+        <div class="overflow-hidden">
+            <div class="carousel-track">
+                <div th:each="i : ${#numbers.sequence(1,2)}">
+                    <div class="flex gap-6">
+                        <div class="min-w-[200px] p-5 rounded-2xl bg-white/5 border border-cyan-500/20 shadow-lg">
+                            <h3 class="text-cyan-400 font-semibold text-sm mb-3">💻 Languages</h3>
+                            <ul class="text-white-400 text-xs space-y-1"><li>Python</li><li>Java</li><li>JavaScript</li></ul>
+                        </div>
+                        <div class="min-w-[200px] p-5 rounded-2xl bg-white/5 border border-blue-500/20 shadow-lg">
+                            <h3 class="text-blue-400 font-semibold text-sm mb-3">🌐 Web Dev</h3>
+                            <ul class="text-white-400 text-xs space-y-1"><li>Flask</li><li>FastAPI</li><li>Spring Boot</li><li>Tailwind</li><li>React</li></ul>
+                        </div>
+                        <div class="min-w-[200px] p-5 rounded-2xl bg-white/5 border border-purple-500/20 shadow-lg">
+                            <h3 class="text-purple-400 font-semibold text-sm mb-3">📦 Libraries</h3>
+                            <ul class="text-white-400 text-xs space-y-1"><li>NumPy</li><li>Pandas</li><li>Matplotlib</li><li>Seaborn</li></ul>
+                        </div>
+                        <div class="min-w-[200px] p-5 rounded-2xl bg-white/5 border border-green-500/20 shadow-lg">
+                            <h3 class="text-green-400 font-semibold text-sm mb-3">🗄️ Databases</h3>
+                            <ul class="text-white-400 text-xs space-y-1"><li>MongoDB</li><li>MySQL</li></ul>
+                        </div>
+                        <div class="min-w-[200px] p-5 rounded-2xl bg-white/5 border border-yellow-500/20 shadow-lg">
+                            <h3 class="text-yellow-400 font-semibold text-sm mb-3">🛠️ Tools</h3>
+                            <ul class="text-white-400 text-xs space-y-1"><li>Git & GitHub</li><li>SQL-Workbench</li><li>MongoDB Atlas</li></ul>
+                        </div>
+                        <div class="min-w-[200px] p-5 rounded-2xl bg-white/5 border border-pink-500/20 shadow-lg">
+                            <h3 class="text-pink-400 font-semibold text-sm mb-3">🧠 Core CS</h3>
+                            <ul class="text-white-400 text-xs space-y-1"><li>DSA</li><li>OOPs</li><li>Machine learning</li></ul>
+                        </div>
                     </div>
-                    <div class="skill-category" style="--position:2">
-                        <h3>Web Development</h3>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>Flask</li>
-                            <li>Spring Boot</li>
-                            <li>JavaScript</li>
-                            <li>TypeScript</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category" style="--position:3">
-                        <h3>Libraries & Tools</h3>
-                        <ul>
-                            <li>NumPy</li>
-                            <li>Pandas</li>
-                            <li>Matplotlib</li>
-                            <li>Seaborn</li>
-                            <li>MediaPipe & OpenCV</li>
-                            <li>Maven</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category" style="--position:4">
-                        <h3>Databases</h3>
-                        <ul>
-                            <li>MongoDB</li>
-                            <li>MySQL</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category" style="--position:5">
-                        <h3>Tools & Platforms</h3>
-                        <ul>
-                            <li>Git & GitHub</li>
-                            <li>VS Code</li>
-                            <li>IntelliJ IDEA</li>
-                            <li>MongoDB Atlas</li>
-                            <li>MySQL WorkBench</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category" style="--position:6">
-                        <h3>Core CS</h3>
-                        <ul>
-                            <li>Data Structures & Algorithms</li>
-                            <li>OOPs</li>
-                            <li>File Handling</li>
-                            <li>Exception Handling</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="div4">
-            <h5>About App</h5>
-            <div class="detail">
-                <p>
-                    This app is a smart coding platform designed for students and teachers. Students can submit their code for problems, and the app automatically analyzes it to estimate time and space complexity, detect potential code smells, and provide feedback on coding quality.
-                    Teachers can easily review submissions, track progress, and offer guidance, making the learning and evaluation process more efficient and transparent.
-                    It’s a bridge between learning, practice, and constructive code review, helping students write cleaner and more efficient code.
-                </p>
-            </div>
-        </div>
-        <div class="div5">
-            <h5>Profiles</h5>
-            <div class="link">
-                <div class="linkrow">
-                    <img th:src="@{/images/github.jpg}" alt="GitHub">
-                    <a href="https://github.com/MalayGoel07">GitHub</a>
-                </div>
-                <div class="linkrow">
-                    <img th:src="@{/images/linkedin.jpg}" alt="LinkedIN">
-                    <a href="https://www.linkedin.com/in/malay-goel-419773387/">LinkedIN</a>
                 </div>
             </div>
         </div>
     </div>
-    <a class="back-link" th:href="@{/}"> Back</a>
-    <script th:src="@{/js/particle.js}"></script>
+    <div class="mt-16 px-8 max-w-4xl mx-auto">
+        <h5 class="text-2xl font-bold text-center bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-2">About the App</h5>
+        <div class="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg shadow-lg text-gray-400 text-sm leading-relaxed">
+            This app is a <span class="text-white font-semibold">smart coding platform</span> designed for students and teachers.
+            Students can submit their code for problems, and the app automatically analyzes it to estimate
+            <span class="text-white font-semibold">time and space complexity</span>, detect potential
+            <span class="text-white font-semibold">code smells</span>, and provide feedback on coding quality.
+            <br><br>
+            Teachers can easily review submissions, track progress, and offer guidance — making the learning and evaluation process more
+            <span class="text-white font-semibold">efficient and transparent</span>.
+            <br><br>
+            It's a bridge between learning, practice, and constructive code review, helping students write
+            <span class="text-white font-semibold">cleaner and more efficient code</span>.
+        </div>
+    </div>
+    <div id="contact" class="mt-6 px-8 max-w-4xl mx-auto pb-20">
+        <h5 class="text-2xl font-bold text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">Profiles</h5>
+        <div class="flex justify-center gap-6">
+            <a href="https://github.com/MalayGoel07" target="_blank"
+               class="no-underline flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 transition duration-300 shadow-lg">
+                <img th:src="@{/images/github.jpg}" alt="GitHub" class="w-6 h-6 rounded-full">
+                <span class="text-sm text-gray-300">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/malay-goel-419773387/" target="_blank"
+               class="no-underline flex items-center gap-3 px-6 py-3 rounded-xl bg-white/5 border border-blue-500/30 hover:border-blue-400 hover:bg-blue-500/10 transition duration-300 shadow-lg">
+                <img th:src="@{/images/linkedin.jpg}" alt="LinkedIn" class="w-6 h-6 rounded-full">
+                <span class="text-sm text-blue-300">LinkedIn</span>
+            </a>
+        </div>
+    </div>
+    <a th:href="@{/}" class="no-underline fixed bottom-6 left-6 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 text-sm rounded-lg transition cursor-pointer">← Back</a>
 </body>
 </html>

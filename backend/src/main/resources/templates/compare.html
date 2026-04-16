@@ -1,43 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
-    <title>Deep Code Compare</title>
-    <link rel="stylesheet" th:href="@{/css/compare.css}">
+    <title>Deep Code Compare • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <div class="div1">
-            <h1>Deep Code Comparison</h1>
-            <div class="mode-toggle">
-                <button type="button" id="fileModeBtn">Use File Input</button>
-                <button type="button" id="textModeBtn">Use Text Input</button>
+
+<body class="text-white font-mono min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg">
+        <div class="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            Deep Compare 🔍
+        </div>
+        <a th:href="@{/home}" class="text-sm text-gray-300 hover:text-cyan-400 transition">
+            ← Back
+        </a>
+    </nav>
+
+    <!-- Main -->
+    <main class="flex-1 grid md:grid-cols-2 gap-6 px-6 py-8">
+
+        <!-- LEFT PANEL -->
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg space-y-5">
+
+            <h1 class="text-xl font-bold">Code Input</h1>
+
+            <!-- Toggle -->
+            <div class="flex gap-3 text-sm">
+                <button type="button" id="fileModeBtn"
+                        class="px-3 py-1 rounded bg-blue-500/30 hover:bg-blue-500/50 transition">
+                    File Input
+                </button>
+                <button type="button" id="textModeBtn"
+                        class="px-3 py-1 rounded bg-white/10 hover:bg-white/20 transition">
+                    Text Input
+                </button>
             </div>
-            <form th:action="@{/compare}" method="post" enctype="multipart/form-data">
-                <div id="uploadSection" class="mode-section">
-                    <label>File 1:</label>
-                    <input type="file" name="file1" accept=".java,.py,.txt">
-                    <label>File 2:</label>
-                    <input type="file" name="file2" accept=".java,.py,.txt">
+
+            <form th:action="@{/compare}" method="post" enctype="multipart/form-data" class="space-y-4">
+
+                <!-- File Upload -->
+                <div id="uploadSection" class="space-y-3">
+
+                    <div>
+                        <label class="text-xs text-gray-400">File 1</label>
+                        <input type="file" name="file1"
+                               class="w-full text-sm mt-1">
+                    </div>
+
+                    <div>
+                        <label class="text-xs text-gray-400">File 2</label>
+                        <input type="file" name="file2"
+                               class="w-full text-sm mt-1">
+                    </div>
+
                 </div>
-                <div id="pasteSection" class="mode-section hidden">
-                    <label>Code 1:</label>
-                    <textarea name="code1" placeholder="Paste first code here..."></textarea>
-                    <label>Code 2:</label>
-                    <textarea name="code2" placeholder="Paste second code here..."></textarea>
+
+                <!-- Text Mode -->
+                <div id="pasteSection" class="hidden space-y-3">
+
+                    <div>
+                        <label class="text-xs text-gray-400">Code 1</label>
+                        <textarea name="code1" rows="6"
+                                  placeholder="Paste first code..."
+                                  class="w-full px-3 py-2 rounded bg-black/40 border border-white/10 text-xs"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="text-xs text-gray-400">Code 2</label>
+                        <textarea name="code2" rows="6"
+                                  placeholder="Paste second code..."
+                                  class="w-full px-3 py-2 rounded bg-black/40 border border-white/10 text-xs"></textarea>
+                    </div>
+
                 </div>
-                <button type="submit">Compare</button>
-                <a class="back-link" th:href="@{/home}"> Back</a>
+
+                <!-- Submit -->
+                <button type="submit"
+                        class="w-full py-2 bg-blue-500/80 hover:bg-blue-600 transition rounded-md font-semibold text-sm">
+                    Compare ⚡
+                </button>
+
             </form>
-        </div>
-        <div class="div2">
-            <h3>Analysis Result</h3>
+
+        </section>
+
+        <!-- RIGHT PANEL -->
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg flex flex-col">
+
+            <h2 class="text-lg font-bold mb-3">Analysis Result 📊</h2>
+
             <textarea readonly
-                th:text="${result != null ? result : 'Upload two files and click Compare to view analysis.'}">
+                      class="flex-1 w-full px-3 py-2 rounded bg-black/50 border border-white/10 text-xs text-green-300"
+                      th:text="${result != null ? result : 'Upload or paste two codes and click Compare.'}">
             </textarea>
-        </div>
-    </div>
+
+        </section>
+
+    </main>
+
     <script th:src="@{/js/compare.js}"></script>
-    <script th:src="@{/js/particle.js}"></script>
+
 </body>
 </html>

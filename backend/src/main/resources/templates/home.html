@@ -1,53 +1,410 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coan-X🚀</title>
+    <style>
+        body { background: radial-gradient(circle at top, #0f172a, #020617); }
+        .float-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            border-radius: inherit;
+            z-index: 0;
+        }
+        .float-sym {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            white-space: nowrap;
+            opacity: 0;
+            animation: floatUp linear infinite;
+            user-select: none;
+        }
+        .sym-complexity { color: rgba(34,211,238,0.18); font-size: 13px; }
+        .sym-comparator { color: rgba(147,197,253,0.22); font-size: 13px; }
+        .sym-sandbox    { color: rgba(252,165,165,0.22);  font-size: 12px; }
+        .sym-roadmap { color: rgba(129, 34, 238, 0.18); font-size: 13px; }
+        @keyframes floatUp {
+            0%   { opacity: 0; transform: translateY(110%) rotate(-4deg) scale(0.9); }
+            8%   { opacity: 1; }
+            85%  { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-20px) rotate(4deg) scale(1.05); }
+        }
+        .card-content { position: relative; z-index: 1; }
+        .kb {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 5px;
+            background: rgba(10,10,30,0.9);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 12px 14px 14px;
+        }
+        .kb-row {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+        }
+        .k {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1e1e3a;
+            border: 1px solid #33336a;
+            border-bottom: 3px solid #0a0a20;
+            border-radius: 5px;
+            color: #c8c8ee;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            font-weight: 500;
+            height: 30px;
+            min-width: 30px;
+            padding: 0 5px;
+            cursor: pointer;
+            transition: transform 0.07s, border-bottom-width 0.07s, background 0.07s, color 0.07s;
+            user-select: none;
+            line-height: 1;
+        }
+        .k:active, .k.pressed {
+            background: #141430;
+            border-bottom-width: 1px;
+            transform: translateY(2px);
+        }
+        .k.lit {
+            background: #1a3a5a;
+            color: #7ee8fa;
+            border-color: #3a7aaa;
+            border-bottom-color: #0a1a2a;
+        }
+        .k .sub { font-size: 8px; color: #6677aa; line-height: 1; }
+        .k .sup { font-size: 8px; color: #7ee8fa; line-height: 1; }
+        .k-num  { min-width: 28px; }
+        .k-tab  { min-width: 46px; font-size: 9px; }
+        .k-caps { min-width: 52px; font-size: 9px; }
+        .k-lsh  { min-width: 60px; font-size: 9px; }
+        .k-rsh  { min-width: 60px; font-size: 9px; }
+        .k-bsp  { min-width: 52px; font-size: 9px; }
+        .k-ent  { min-width: 52px; font-size: 9px; color: #7ee8fa; }
+        .k-spc  { min-width: 160px; }
+        .k-mod  { min-width: 38px; font-size: 9px; }
+        .k-arr  { min-width: 26px; }
+        #screen {
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { colors: {} } } }
+    </script>
 </head>
-<body>
-    <div class="main-container swing-in-top-fwd">
-        <div class="top-left">
-            <h1>Welcome to Coan-X🚀</h1>
-            <p>Analyze complexity, plagiarism and quality of your code instantly.</p>
+<body class="text-white font-mono min-h-screen">
+
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg sticky top-0 z-50">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Coan-X 🚀</div>
+        <div class="space-x-6 text-sm">
+            <a th:href="@{/about}"    class="no-underline hover:text-cyan-400 transition cursor-pointer">About</a>
+            <a th:href="@{/profile}"  class="no-underline text-blue-300 hover:text-blue-500 transition cursor-pointer">Profile</a>
+            <a th:href="@{/feedback}" class="no-underline text-green-300 hover:text-green-400 transition cursor-pointer">Feedback</a>
         </div>
-        <div class="top-right">
-            <a class="btn-6" th:href="@{/profile}">Profile</a>
-            <a class="btn-3" th:href="@{/about}">About</a>
-            <a class="btn-4" th:href="@{/feedback}">Feedback</a>
+    </nav>
+
+    <section class="mb-8">
+        <div class="flex flex-col items-center mt-4 justify-between">
+            <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Welcome to Coding fest!</div>
+            <p class="text-gray-400">Analyze complexity and quality of your code instantly.</p>
         </div>
-        <div class="center-left">
-            <a class="btn-1" th:href="@{/code-comp}">Code Complexcity</a>
-            <a class="btn-7" th:href="@{/SandboxCompiler}">Sandbox Compiler</a>
-            <a class="btn-5" href="/login">Logout</a>
+        <div class="grid md:grid-cols-3 gap-8 mt-12 px-8">
+            <a th:href="@{/code-comp}"
+               class="relative flex flex-col justify-between p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 hover:border-cyan-400 transition overflow-hidden">
+                <div class="float-bg" id="bg-complexity"></div>
+                <div class="card-content">
+                    <h3 class="text-lg font-bold">Code Complexity</h3>
+                    <p class="text-gray-400 text-sm mt-2">Analyze the efficiency of your code with detailed time and space complexity insights.</p>
+                    <div class="mt-3 text-xs text-gray-500 space-y-1">
+                        <p>• Detect performance bottlenecks</p>
+                        <p>• Optimize algorithms smarter</p>
+                        <p>• Improve coding efficiency</p>
+                    </div>
+                </div>
+                <span class="card-content mt-6 text-cyan-400 text-sm">Let's do this →</span>
+            </a>
+            <a th:href="@{/Compare}" class="relative flex flex-col justify-between p-6 rounded-xl bg-blue-500/50 border border-white/10 backdrop-blur-lg hover:scale-105 transition overflow-hidden">
+                <div class="float-bg" id="bg-comparator"></div>
+                <div class="card-content">
+                    <h3 class="text-lg font-bold">Comparator</h3>
+                    <p class="text-gray-200 text-sm mt-2">Compare multiple code snippets and understand differences in logic and structure.</p>
+                    <div class="mt-3 text-xs text-gray-300 space-y-1">
+                        <p>• Side-by-side comparison</p>
+                        <p>• Identify better solutions</p>
+                        <p>• Cleaner decision making</p>
+                    </div>
+                </div>
+                <span class="card-content mt-6 text-white text-sm">Let's do this →</span>
+            </a>
+            <a th:href="@{/SandboxCompiler}" class="relative flex flex-col justify-between p-6 rounded-xl bg-red-500/50 border border-white/10 backdrop-blur-lg hover:scale-105 transition overflow-hidden">
+                <div class="float-bg" id="bg-sandbox"></div>
+                <div class="card-content">
+                    <h3 class="text-lg font-bold">Sandbox Compiler</h3>
+                    <p class="text-gray-200 text-sm mt-2">Run and test your code securely in an isolated environment with instant feedback.</p>
+                    <div class="mt-3 text-xs text-gray-300 space-y-1">
+                        <p>• Safe execution environment</p>
+                        <p>• Multi-language support</p>
+                        <p>• Fast testing cycle</p>
+                    </div>
+                </div>
+                <span class="card-content mt-6 text-white text-sm">Let's do this →</span>
+            </a>
         </div>
-        <a class="side-card" th:href="@{/detail}">
-            <div>
-                <h3>Details</h3>
-                <p>Open the detailed view and insights about programming languages.</p>
+        <div class="mt-16 px-8 overflow-hidden">
+            <div class="flex gap-4 w-max">
+                <span class="px-4 py-2 rounded-full bg-cyan-500/50 hover:bg-blue-500/50 hover:scale-105 border border-white/10 text-sm whitespace-nowrap">Most Popped Topics -></span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">DSA</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Roadmap</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Vibe Coding</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">AI</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Time Complexity</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">...</span>
             </div>
-            <span>View detail</span>
-        </a>
-        <div class="bottom-cards">
-            <a class="bottom-card" th:href="@{/instant-metrics}">
+        </div>
+        <div class="mt-4 px-8 overflow-hidden">
+            <div class="flex gap-4 w-max">
+                <span class="px-4 py-2 rounded-full bg-cyan-500/50 hover:bg-blue-500/50 hover:scale-105 border border-white/10 text-sm whitespace-nowrap">Most Used Tools -></span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Claude</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">ChatGPT</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Qwen chatbot</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">VsCode</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Leetcode</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">...</span>
+            </div>
+        </div>
+        <div class="mt-4 px-8 overflow-hidden">
+            <div class="flex gap-4 w-max">
+                <span class="px-4 py-2 rounded-full bg-cyan-500/50 hover:bg-blue-500/50 hover:scale-105 border border-white/10 text-sm whitespace-nowrap">Most Demanding Skills -></span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Deep learning</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Prompt Engineering</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">Cyber</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">MLOps</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm whitespace-nowrap">...</span>
+            </div>
+        </div>
+        <div class="mt-16 px-8">
+            <a th:href="@{/detail}" class="flex items-center justify-between p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-[1.02] hover:border-cyan-400 transition">
                 <div>
-                    <h3>Practice Problem</h3>
-                    <p>Get daily Question here.</p>
+                    <h3 class="text-lg font-bold">Details</h3>
+                    <p class="text-gray-400 text-sm mt-1">Explore deeper insights about programming languages and concepts.</p>
                 </div>
-            </a>
-            <a class="bottom-card" th:href="@{/deep-compare}">
-                <div>
-                    <h3>Deep Compare</h3>
-                    <p>Detect similarity across files with robust matching.</p>
-                </div>
-            </a>
-            <a class="bottom-card" th:href="@{/roadmap}">
-                <div>
-                    <h3>Roadmap</h3>
-                    <p>Build a simple year-wise roadmap with language and specialization guidance.</p>
-                </div>
+                <span class="text-cyan-400 text-sm whitespace-nowrap">View detail →</span>
             </a>
         </div>
-    </div>
-    <script th:src="@{/js/particle.js}"></script>
+        <div class="mt-16 px-8 max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
+            <div class="flex-1 flex flex-col justify-center gap-4 border border-dashed border-white/10 rounded-xl min-h-[300px] p-4">
+                <div class="w-full h-64 bg-[#0a0a1a] border border-[#33336a] rounded-lg p-3 font-mono text-xs text-cyan-400 overflow-hidden" id="screen"></div>
+                <div class="kb" id="kb">
+                    <div class="kb-row">
+                        <div class="k k-num"><span class="sup">~</span><span class="sub">`</span></div>
+                        <div class="k k-num"><span class="sup">!</span><span class="sub">1</span></div>
+                        <div class="k k-num"><span class="sup">@</span><span class="sub">2</span></div>
+                        <div class="k k-num"><span class="sup">#</span><span class="sub">3</span></div>
+                        <div class="k k-num"><span class="sup">$</span><span class="sub">4</span></div>
+                        <div class="k k-num"><span class="sup">%</span><span class="sub">5</span></div>
+                        <div class="k k-num"><span class="sup">^</span><span class="sub">6</span></div>
+                        <div class="k k-num"><span class="sup">&amp;</span><span class="sub">7</span></div>
+                        <div class="k k-num"><span class="sup">*</span><span class="sub">8</span></div>
+                        <div class="k k-num"><span class="sup">(</span><span class="sub">9</span></div>
+                        <div class="k k-num"><span class="sup">)</span><span class="sub">0</span></div>
+                        <div class="k k-num"><span class="sup">_</span><span class="sub">-</span></div>
+                        <div class="k k-num"><span class="sup">+</span><span class="sub">=</span></div>
+                        <div class="k k-bsp">bksp</div>
+                    </div>
+                    <div class="kb-row">
+                        <div class="k k-tab">tab</div>
+                        <div class="k">Q</div><div class="k">W</div><div class="k">E</div>
+                        <div class="k">R</div><div class="k">T</div><div class="k">Y</div>
+                        <div class="k">U</div><div class="k">I</div><div class="k">O</div>
+                        <div class="k">P</div>
+                        <div class="k k-num"><span class="sup">{</span><span class="sub">[</span></div>
+                        <div class="k k-num"><span class="sup">}</span><span class="sub">]</span></div>
+                        <div class="k k-num"><span class="sup">|</span><span class="sub">\</span></div>
+                    </div>
+                    <div class="kb-row">
+                        <div class="k k-caps">caps</div>
+                        <div class="k">A</div><div class="k">S</div><div class="k">D</div>
+                        <div class="k">F</div><div class="k">G</div><div class="k">H</div>
+                        <div class="k">J</div><div class="k">K</div><div class="k">L</div>
+                        <div class="k k-num"><span class="sup">:</span><span class="sub">;</span></div>
+                        <div class="k k-num"><span class="sup">"</span><span class="sub">'</span></div>
+                        <div class="k k-ent">enter</div>
+                    </div>
+                    <div class="kb-row">
+                        <div class="k k-lsh">shift</div>
+                        <div class="k">Z</div><div class="k">X</div><div class="k">C</div>
+                        <div class="k">V</div><div class="k">B</div><div class="k">N</div>
+                        <div class="k">M</div>
+                        <div class="k k-num"><span class="sup">&lt;</span><span class="sub">,</span></div>
+                        <div class="k k-num"><span class="sup">&gt;</span><span class="sub">.</span></div>
+                        <div class="k k-num"><span class="sup">?</span><span class="sub">/</span></div>
+                        <div class="k k-rsh">shift</div>
+                    </div>
+                    <div class="kb-row">
+                        <div class="k k-mod">ctrl</div>
+                        <div class="k k-mod">alt</div>
+                        <div class="k k-mod">fn</div>
+                        <div class="k k-spc"></div>
+                        <div class="k k-mod">fn</div>
+                        <div class="k k-mod">alt</div>
+                        <div class="k k-arr">&#8592;</div>
+                        <div class="k k-arr" style="height:30px;padding:2px 5px;">
+                            <div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:8px;">&#8593;</div>
+                            <div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:8px;">&#8595;</div>
+                        </div>
+                        <div class="k k-arr">&#8594;</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col gap-8">
+                <a th:href="@{/instant-metrics}" class="flex flex-col justify-between p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 hover:border-green-400 transition">
+                    <div>
+                        
+                        <h3 class="text-lg font-bold">Practice Problem</h3>
+                        <p class="text-gray-400 text-sm mt-2">Solve daily coding questions and sharpen your problem-solving skills.</p>
+                        <div class="mt-3 text-xs text-gray-500 space-y-1">
+                            <p>• Daily challenges</p>
+                            <p>• Improve consistency</p>
+                            <p>• Track your progress</p>
+                        </div>
+                    </div>
+                    <span class="mt-6 text-green-400 text-sm">Let's do this →</span>
+                </a>
+                <a th:href="@{/roadmap}"
+                   class="flex flex-col justify-between p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 hover:border-purple-400 transition overflow-hidden">
+                    <div class="float-bg" id="bg-roadmap"></div>
+                    <div class="card-content">
+                        <h3 class="text-lg font-bold">Roadmap</h3>
+                        <p class="text-gray-400 text-sm mt-2">Follow a structured learning path based on your goals and experience level.</p>
+                        <div class="mt-3 text-xs text-gray-500 space-y-1">
+                            <p>• Year-wise guidance</p>
+                            <p>• Language selection</p>
+                            <p>• Career-focused path</p>
+                        </div>
+                        <span class="mt-6 text-purple-400 text-sm">Let's do this →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const screenEl = document.getElementById('screen');
+        let typed = '> ';
+        const cards = [
+            { id: 'bg-complexity', cls: 'sym-complexity', symbols: ['O(1)','O(n)','O(log n)','O(n²)','O(n log n)','O(2ⁿ)','O(n!)','Θ(n)','Ω(1)','O(√n)','T(n)','S(n)','O(n³)','O(log log n)'] },
+            { id: 'bg-comparator', cls: 'sym-comparator', symbols: ['===','!==','>=','<=','diff','A vs B','==','!=','Δ','⟺','merge','patch','fork','←→'] },
+            { id: 'bg-sandbox',    cls: 'sym-sandbox',    symbols: ['$ run','> exec','#!/bin','stdout','stderr','exit 0','compile','{ }','[]','λ','fn()','return','import','build'] },
+            {id:'bg-roadmap',cls:'sym-roadmap',symbols:['AI','ML','Web','DSA','FS','Cyber','Data','Dev','Ops','Cloud']}
+        ];
+        function renderScreen() {
+            screenEl.textContent = typed + '_';
+        }
+        function handleInput(key) {
+            if (key === 'Backspace') {
+                typed = typed.length > 2 ? typed.slice(0, -1) : typed;
+            } else if (key === 'Enter') {
+                const lines = typed.split('\n');
+                let lastLine = '';
+                for (let i = lines.length - 1; i >= 0; i--) {
+                    if (lines[i].startsWith('> ') && lines[i].trim() !== '>') {
+                        lastLine = lines[i].replace('> ', '');
+                        break;
+                    }
+                }
+                handleCommand(lastLine);
+                if (!typed.endsWith('> ')) {
+                    typed += '\n> ';
+                }
+            } else if (key === 'Space') {
+                typed += ' ';
+            } else if (key && key.length === 1) {
+                typed += key;
+            }
+            renderScreen();
+        }
+        function handleCommand(cmd) {
+            cmd = cmd.trim();
+            if (cmd === '') return;
+
+            if (cmd === 'clear') {
+                typed = '> ';
+            } 
+            else if (cmd === 'help') {
+                typed += '\nCommands: help, clear, analyze, roadmap, compare, compiler, practice, profile, feedback, about';
+            } 
+            else if (cmd === 'roadmap') { window.location.href = '/roadmap'; } 
+            else if (cmd === 'analyze') { window.location.href = '/code-comp'; }
+            else if (cmd === 'compare') { window.location.href = '/Compare'; } 
+            else if (cmd === 'compiler') { window.location.href = '/SandboxCompiler'; } 
+            else if (cmd === 'practice') { window.location.href = '/instant-metrics'; }
+            else if (cmd === 'profile') { window.location.href = '/profile'; }
+            else if (cmd === 'feedback') { window.location.href = '/feedback'; }
+            else if (cmd === 'about') { window.location.href = '/about'; }
+            else {
+                typed += '\nCommand not found';
+            }
+        }
+        function getVirtualKeyValue(keyEl) {
+            if (keyEl.classList.contains('k-bsp')) return 'Backspace';
+            if (keyEl.classList.contains('k-ent')) return 'Enter';
+            if (keyEl.classList.contains('k-spc')) return 'Space';
+            if (keyEl.classList.contains('k-tab')) return 'Tab';
+            if (keyEl.classList.contains('k-caps') || keyEl.classList.contains('k-lsh') || keyEl.classList.contains('k-rsh') || keyEl.classList.contains('k-mod')) return null;
+
+            const sub = keyEl.querySelector('.sub');
+            if (sub) return sub.textContent;
+
+            const txt = keyEl.textContent.trim();
+            if (txt === '←') return null;
+            if (txt === '↑↓') return null;
+            if (txt === '→') return null;
+            return txt.length === 1 ? txt.toLowerCase() : null;
+        }
+        cards.forEach(({ id, cls, symbols }) => {
+            const container = document.getElementById(id);
+            if (!container) return;
+            for (let i = 0; i < 14; i++) {
+                const el = document.createElement('span');
+                el.className = `float-sym ${cls}`;
+                el.textContent = symbols[i % symbols.length];
+                const duration = 5 + Math.random() * 6;
+                el.style.cssText = `left:${Math.random()*85}%;bottom:0;animation-duration:${duration}s;animation-delay:-${Math.random()*duration}s;`;
+                container.appendChild(el);
+            }
+        });
+        const kb = document.getElementById('kb');
+        kb.querySelectorAll('.k').forEach(k => {
+            k.addEventListener('mousedown', () => k.classList.add('pressed'));
+            ['mouseup','mouseleave'].forEach(ev => k.addEventListener(ev, () => k.classList.remove('pressed')));
+            k.addEventListener('click', () => {
+                const value = getVirtualKeyValue(k);
+                if (value) handleInput(value);
+            });
+        });
+        document.addEventListener('keydown', e => {
+            kb.querySelectorAll('.k').forEach(k => {
+                const txt = k.textContent.trim().toUpperCase();
+                if (txt === e.key.toUpperCase()) {
+                    k.classList.add('lit');
+                    setTimeout(() => k.classList.remove('lit'), 200);
+                }
+            });
+            handleInput(e.key);
+        });
+        renderScreen();
+    </script>
 </body>
 </html>

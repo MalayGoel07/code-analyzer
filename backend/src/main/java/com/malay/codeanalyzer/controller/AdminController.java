@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.malay.codeanalyzer.model.AdminLoginForm;
 import com.malay.codeanalyzer.model.PracticeProblem;
 import com.malay.codeanalyzer.repository.PracticeProblemRepository;
 
@@ -33,13 +34,20 @@ public class AdminController {
         this.practiceProblemRepository = practiceProblemRepository;
     }
 
-    @PostMapping("/admin/login")
-    public String adminLogin(String email, String password, Model model, HttpSession session) {
-        if (adminEmail.equals(email) && adminPassword.equals(password)) {
+    @PostMapping("/adminlog")
+    public String adminLogin(@Valid @ModelAttribute("form") AdminLoginForm form,BindingResult result,Model model,HttpSession session) {
+        if (result.hasErrors()) {return "adminlog";}
+        if (adminEmail.equals(form.getEmail()) && adminPassword.equals(form.getPassword())) {
             session.setAttribute(ADMIN_SESSION_KEY, true);
             return "redirect:/adminhome";
         }
         model.addAttribute("error", "Invalid admin credentials");
+        return "adminlog";
+    }
+
+    @GetMapping("/adminlog")
+    public String adminLoginPage(Model model) {
+        model.addAttribute("form", new AdminLoginForm());
         return "adminlog";
     }
 

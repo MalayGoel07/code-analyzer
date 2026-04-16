@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – Coan-X</title>
+    <style>body { background: radial-gradient(circle at top, #0f172a, #020617); }</style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="container slide-in-elliptic-bottom-fwd">
-    <div class="flash-container" th:if="${messages != null}">
-        <div th:each="msg : ${messages}" th:class="'flash ' + ${msg.type}" th:text="${msg.text}">
+<body class="text-white font-mono min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-md">
+        <div th:if="${messages != null}" class="mb-4 space-y-2">
+            <div th:each="msg : ${messages}"
+                 th:class="${msg.type == 'error'} ? 'px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm' : 'px-4 py-2 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 text-sm'"
+                 th:text="${msg.text}">
+            </div>
+        </div>
+        <div class="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-lg shadow-2xl">
+            <div class="text-center mb-8">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Coan-X 🚀</h1>
+                <h2 class="text-xl font-semibold mt-2">Login Account</h2>
+                <p class="text-gray-500 text-base mt-1">Lets join the Fest!</p>
+            </div>
+            <form th:action="@{/login}" th:object="${form}" method="post" class="space-y-5">
+                <div>
+                    <label class="text-xs text-gray-400 uppercase tracking-widest mb-1 block">Email</label>
+                    <input type="email" th:field="*{email}" autocomplete="off" placeholder="Enter your email" class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition"/>
+                    <span th:each="err : ${#fields.errors('email')}" th:text="${err}" class="text-red-400 text-xs mt-1 block"></span>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 uppercase tracking-widest mb-1 block">Password</label>
+                    <input type="password" th:field="*{password}" autocomplete="off" placeholder="Enter your password" class="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 transition"/>
+                    <span th:each="err : ${#fields.errors('password')}" th:text="${err}" class="text-red-400 text-xs mt-1 block"></span>
+                </div>
+                <p th:if="${error}" th:text="${error}" class="text-red-400 text-xs"></p>
+                <button type="submit" class="w-full py-2 mt-2 bg-cyan-600 hover:bg-cyan-500 rounded-lg text-sm font-semibold shadow-lg shadow-cyan-500/20 transition cursor-pointer">Login Account</button>
+            </form>
+
+            <div class="mt-6 text-center text-base text-gray-500 space-y-2">
+                <p>Don't have an account?<a th:href="@{/signup}" class="no-underline text-blue-400 hover:text-blue-300 transition">Sign-Up</a></p>
+                <a th:href="@{/}" class="no-underline text-green-600 hover:text-green-400 transition">← Back to Home</a>
+            </div>
         </div>
     </div>
-    <form th:action="@{/login}" th:object="${form}" method="post">
-        <h2 class="form-title">Login</h2>
-        <p class="form-sub">Access your dashboard</p>
-        <p>
-            <label th:for="*{email}">Email</label><br>
-            <input type="email" th:field="*{email}" class="form-control" autocomplete="off" placeholder="Enter your email">
-            <br>
-            <span th:each="err : ${#fields.errors('email')}" th:text="${err}" style="color:red"></span>
-        </p>
-        <p>
-            <label th:for="*{password}">Password</label><br>
-            <input type="password" th:field="*{password}" class="form-control" autocomplete="off" placeholder="Enter your password">
-            <br>
-            <span th:each="err : ${#fields.errors('password')}" th:text="${err}" style="color:red"></span>
-        </p>
-        <p><button type="submit">Login</button></p>
-        <p>Don't have a Account yet?
-            <a class="tp" th:href="@{/signup}">Sign Up</a>
-        </p>
-        <a class="back-link" th:href="@{/}">Back</a>
-    </form>
-</div>
-<script th:src="@{/js/particle.js}"></script>
-
 </body>
 </html>

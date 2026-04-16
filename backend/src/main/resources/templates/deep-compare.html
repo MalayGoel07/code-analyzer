@@ -1,31 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/card.css}">
-    <title>Deep Compare</title>
+    <title>Deep Compare • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <div class="container tilt-in-fwd-tr">
-        <div class="div1">
-            <h1>Deep Compare</h1>
-            <h2>Smarter similarity detection</h2>
-            <p>
-                Compare files with token and structure-aware matching to catch subtle reuse.
-                This helps instructors and teams flag suspicious overlap with higher confidence.
+
+<body class="text-white font-mono min-h-screen flex items-center justify-center px-6">
+    <div class="max-w-4xl w-full space-y-8">
+        <div class="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-[1.01] transition space-y-6">
+            <div>
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Deep Compare 🔍</h1>
+                <h2 class="text-gray-400 text-sm mt-1">Smarter similarity detection</h2>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed">
+                Compare files using token-based and structure-aware matching to detect subtle similarities.
+                Designed for developers, instructors, and teams to identify code reuse with high accuracy.
             </p>
-            <h3>How it helps</h3>
-            <p>
-                Run pairwise or batch comparisons, then inspect matches with context to confirm intent.
-                Clean reporting keeps results easy to review.
-            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-4 rounded-lg bg-blue-500/10 border border-blue-400/20">
+                    <h3 class="font-bold text-blue-300">⚡ Smart Detection</h3>
+                    <p class="text-gray-400 text-sm mt-1">Goes beyond text matching with structural analysis.</p>
+                </div>
+                <div class="p-4 rounded-lg bg-cyan-500/10 border border-cyan-400/20">
+                    <h3 class="font-bold text-cyan-300">📊 Clear Reports</h3>
+                    <p class="text-gray-400 text-sm mt-1">Clean and readable comparison output for quick review.</p>
+                </div>
+                <div class="p-4 rounded-lg bg-purple-500/10 border border-purple-400/20">
+                    <h3 class="font-bold text-purple-300">🔁 Batch Compare</h3>
+                    <p class="text-gray-400 text-sm mt-1">Run comparisons across multiple files effortlessly.</p>
+                </div>
+                <div class="p-4 rounded-lg bg-green-500/10 border border-green-400/20">
+                    <h3 class="font-bold text-green-300">🧠 Context Aware</h3>
+                    <p class="text-gray-400 text-sm mt-1"> Understand similarity with surrounding logic context.</p>
+                </div>
+
+            </div>
         </div>
-        <div class="div2">
-            <a class="back-link" th:href="@{/compare}">Compare Files</a>
-            <a class="back-link" th:href="@{/home}">Back</a>
+        <div class="flex justify-between text-sm">
+            <a th:href="@{/home}"class="text-gray-400 hover:text-cyan-400 transition"> ← Back</a>
+            <a th:href="@{/compare}"class="px-4 py-2 rounded-md bg-blue-500/80 hover:bg-blue-600 transition font-semibold"> Start Comparing →
+            </a>
         </div>
     </div>
-    <script th:src="@{/js/particle.js}"></script>
+
 </body>
 </html>

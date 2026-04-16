@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/admin-profile.css}">
-    <title>Admin Profile</title>
+    <title>Admin Profile • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <main class="page-shell">
-        <section class="profile-card">
-            <p class="eyebrow">Admin Profile</p>
-            <h1>Administrator</h1>
-            <p class="subtitle">This page shows the currently configured admin account used for the protected admin flow.</p>
 
-            <div class="info-block">
-                <span class="label">Email</span>
-                <p th:text="${adminEmail}">admin@example.com</p>
+<body class="text-white font-mono min-h-screen flex flex-col">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg">
+        <div class="text-xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent"> Admin Panel ⚡</div>
+        <div class="flex items-center gap-6 text-sm">
+            <a th:href="@{/adminhome}" class="text-gray-300 hover:text-red-400 transition"> Dashboard</a>
+            <a th:href="@{/admin/logout}" class="text-gray-300 hover:text-pink-400 transition">Logout</a>
+        </div>
+    </nav>
+    <main class="flex-1 flex items-center justify-center px-4">
+        <div class="w-full max-w-xl space-y-6">
+            <section class="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg space-y-6">
+                <div>
+                    <p class="text-xs text-red-400 uppercase tracking-widest">Admin Profile</p>
+                    <h1 class="text-2xl font-bold">Administrator</h1>
+                    <p class="text-gray-400 text-sm mt-1"> This account controls protected admin operations.</p>
+                </div>
+                <div class="p-4 rounded-lg bg-black/40 border border-white/10">
+                    <span class="text-xs text-gray-400">Email</span>
+                    <p class="text-sm mt-1 text-red-300" th:text="${adminEmail}"> admin@example.com</p>
+                </div>
+            </section>
+            <div class="flex justify-between items-center">
+                <a th:href="@{/adminhome}" class="px-4 py-2 rounded-md bg-white/5 border border-white/10 hover:border-red-400 hover:scale-105 transition text-sm">  ← Back to Dashboard</a>
+                <a th:href="@{/admin/logout}" class="px-4 py-2 rounded-md bg-red-500/80 hover:bg-red-600 transition text-sm">  Logout</a>
             </div>
-        </section>
-
-        <div class="action-row">
-            <a class="action-btn" th:href="@{/adminhome}">Back to Admin Home</a>
-            <a class="action-btn secondary" th:href="@{/admin/logout}">Logout</a>
         </div>
     </main>
-    <script th:src="@{/js/particle.js}"></script>
 </body>
 </html>

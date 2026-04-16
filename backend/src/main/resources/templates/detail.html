@@ -1,27 +1,59 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/detail.css}">
-    <title>Detail</title>
+    <title>Detail • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <div class="container slide-in-right">
-        <h1>Detail View</h1>
-        <p>
-            Drill into specific languages, explore their features, history,
-            and understand how they work in real-world systems.
-        </p>
-        <h2>In Depth Analysis</h2>
-        <div class="lang-buttons">
-            <button class="py" onclick="openLanguage('python')">Python 🐍</button>
-            <button class="java" onclick="openLanguage('java')">Java ☕</button>
+
+<body class="text-white font-mono min-h-screen flex flex-col">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"> Coan-X 🚀</div>
+        <a th:href="@{/home}" class="text-sm text-gray-300 hover:text-cyan-400 transition">  ← Back</a>
+    </nav>
+    <main class="flex-1 flex items-center justify-center px-6">
+        <div class="max-w-4xl w-full space-y-10">
+            <section class="text-center space-y-3">
+                <h1 class="text-3xl font-bold">Detail Explorer</h1>
+                <p class="text-gray-400 text-sm"> Dive deep into programming languages, understand internals, and explore real-world applications.</p>
+            </section>
+            <section class="grid md:grid-cols-2 gap-8">
+                <div onclick="openLanguage('python')"
+                     class="cursor-pointer p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 hover:border-cyan-400 transition">
+                    <h2 class="text-xl font-bold">Python 🐍</h2>
+                    <p class="text-gray-400 text-sm mt-2"> Simple, powerful, and widely used in AI, automation, and backend systems.</p>
+                    <div class="mt-4 text-xs text-gray-500 space-y-1">
+                        <p>• Beginner-friendly</p>
+                        <p>• AI & ML ecosystem</p>
+                        <p>• Rapid development</p>
+                    </div>
+                    <span class="text-cyan-400 text-sm mt-4 inline-block"> Explore →</span>
+                </div>
+                <div onclick="openLanguage('java')" class="cursor-pointer p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 hover:border-orange-400 transition">
+                    <h2 class="text-xl font-bold">Java ☕</h2>
+                    <p class="text-gray-400 text-sm mt-2"> Robust, scalable, and widely used in enterprise and backend systems.</p>
+                    <div class="mt-4 text-xs text-gray-500 space-y-1">
+                        <p>• Strong OOP</p>
+                        <p>• Enterprise systems</p>
+                        <p>• JVM ecosystem</p>
+                    </div>
+                    <span class="text-orange-400 text-sm mt-4 inline-block">Explore →</span>
+                </div>
+            </section>
+            <div class="text-center">
+                <a th:href="@{/home}" class="text-sm text-gray-400 hover:text-cyan-400 transition">← Back to Home</a>
+            </div>
         </div>
-        <br>
-        <a class="back-link" th:href="@{/home}"> Back</a>
-    </div>
-    <script th:src="@{/js/particle.js}"></script>
+    </main>
     <script th:src="@{/js/detail.js}"></script>
 </body>
 </html>

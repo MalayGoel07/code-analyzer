@@ -1,72 +1,88 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap Builder</title>
-    <link rel="stylesheet" th:href="@{/css/roadmap.css}">
+    <title>Roadmap Builder • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <div class="roadmap-page">
-        <header class="hero-card">
-            <div>
-                <a class="back-link" th:href="@{/home}">Back</a>
-                <h1>Roadmap Builder</h1>
-                <p>Create a simple learning roadmap from your current year, main language, and specialization interest.</p>
-            </div>
-        </header>
 
-        <section class="panel form-panel">
-            <h2>Build Your Plan</h2>
-            <form id="roadmapBuilderForm" class="roadmap-form">
-                <label for="year">Year</label>
-                <select id="year" name="year" required>
-                    <option value="1st Year">1st Year</option>
-                    <option value="2nd Year">2nd Year</option>
-                    <option value="3rd Year">3rd Year</option>
-                    <option value="4th Year">4th Year</option>
-                </select>
+<body class="text-white font-mono min-h-screen">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg sticky top-0 z-50">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Coan-X 🚀</div>
+        <a th:href="@{/home}" class="text-sm text-gray-300 hover:text-cyan-400 transition">  ← Back</a>
+    </nav>
 
-                <label for="language">Main Language</label>
-                <select id="language" name="language" required>
-                    <option value="Python">Python</option>
-                    <option value="Java">Java</option>
-                    <option value="JavaScript">JavaScript</option>
-                </select>
-
-                <label for="specialization">Interest Specialization</label>
-                <select id="specialization" name="specialization" required>
-                    <option value="DSA">DSA</option>
-                    <option value="ML">ML</option>
-                    <option value="DL">DL</option>
-                    <option value="Web Development">Web Development</option>
-                </select>
-
-                <button type="submit" class="primary-btn">Generate Roadmap</button>
-            </form>
+    <div class="max-w-6xl mx-auto px-6 py-10 space-y-10">
+        <section class="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <h1 class="text-2xl font-bold">Roadmap Builder</h1>
+            <p class="text-gray-400 mt-2"> Generate a personalized learning roadmap based on your year, language, and specialization.</p>
         </section>
+        <div class="grid md:grid-cols-2 gap-8">
+            <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg space-y-5">
+                <h2 class="text-lg font-bold">Build Your Plan</h2>
+                <form id="roadmapBuilderForm" class="space-y-4">
+                    <div>
+                        <label class="text-sm text-gray-400">Year</label>
+                        <select id="year" name="year"
+                            class="w-full mt-1 px-3 py-2 rounded-md bg-black/40 border border-white/10 text-sm outline-none focus:border-cyan-400">
+                            <option>1st Year</option>
+                            <option>2nd Year</option>
+                            <option>3rd Year</option>
+                            <option>4th Year</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-400">Main Language</label>
+                        <select id="language" name="language" class="w-full mt-1 px-3 py-2 rounded-md bg-black/40 border border-white/10 text-sm outline-none focus:border-cyan-400">
+                            <option>Python</option>
+                            <option>Java</option>
+                            <option>JavaScript</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-400">Specialization</label>
+                        <select id="specialization" name="specialization"
+                            class="w-full mt-1 px-3 py-2 rounded-md bg-black/40 border border-white/10 text-sm outline-none focus:border-cyan-400">
+                            <option>DSA</option>
+                            <option>ML</option>
+                            <option>DL</option>
+                            <option>Web Development</option>
+                        </select>
+                    </div>
 
-        <section class="panel output-panel">
-            <h2>Your Roadmap</h2>
-            <div id="roadmapOutput" class="roadmap-output">
-                <p class="empty-text">Fill the form to generate your roadmap.</p>
+                    <button type="submit" class="w-full py-2 bg-cyan-500/80 hover:bg-cyan-600 transition rounded-md text-sm font-semibold"> Generate Roadmap ⚡</button>
+                </form>
+            </section>
+            <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+                <h2 class="text-lg font-bold mb-4">Your Roadmap</h2>
+                <div id="roadmapOutput" class="text-sm text-gray-300 space-y-3 min-h-[200px]">
+                    <p class="text-gray-500">Fill the form to generate your roadmap.</p>
+                </div>
+            </section>
+        </div>
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <div class="mb-4">
+                <h2 class="text-lg font-bold">Recommended Resources</h2>
+                <p class="text-gray-400 text-sm">Curated suggestions based on your roadmap.</p>
             </div>
-        </section>
-
-        <section class="panel resources-panel">
-            <div class="section-head">
-                <h2>Recommended Resources</h2>
-                <p>Simple hand-picked suggestions based on your selection.</p>
-            </div>
-            <div id="resourceCards" class="resource-grid">
-                <article class="resource-card placeholder-card">
-                    <h3>Waiting for input</h3>
-                    <p>Generate the roadmap to see the resource cards here.</p>
-                </article>
+            <div id="resourceCards" class="grid md:grid-cols-3 gap-4">
+                <a href="#" target="_blank" class="group block p-4 rounded-lg bg-black/40 border border-white/10 hover:border-cyan-400 hover:scale-105 transition duration-200">              
+                    <h3 class="font-semibold group-hover:text-cyan-400 transition">Waiting for input</h3>
+                    <p class="text-gray-400 text-sm mt-1">Generate roadmap to unlock resources.</p>
+                    <div class="mt-3 text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition">Open Resource →</div>
+                </a>
             </div>
         </section>
     </div>
-
     <script th:src="@{/js/roadmap.js}"></script>
 </body>
 </html>

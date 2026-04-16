@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/delete-account.css}">
-    <title>Delete Account</title>
+    <title>Delete Account • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <form th:action="@{/profile/delete}" method="post">
-            <h2 class="title">Confirm Account Deletion</h2>
-            <p class="subtitle">This action is permanent and cannot be undone.</p>
-            <div class="warning-box">
-                <p>Type <strong>DELETE</strong> to confirm:</p>
-                <input type="text" name="confirmText" required pattern="DELETE" placeholder="DELETE">
+<body class="text-white font-mono min-h-screen flex items-center justify-center px-6">
+    <div class="w-full max-w-md">
+        <form th:action="@{/profile/delete}" method="post" class="p-6 rounded-xl bg-white/5 border border-red-500/30 backdrop-blur-lg space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-xl font-bold text-red-400">⚠ Delete Account</h2>
+                <p class="text-gray-400 text-sm">This action is permanent and cannot be undone.</p>
             </div>
-            <div class="actions">
-                <a th:href="@{/profile}" class="cancel-link">Cancel</a>
-                <button type="submit" class="delete-btn">Delete My Account</button>
+            <div class="p-4 rounded-lg bg-red-500/10 border border-red-400/20 space-y-3">
+                <p class="text-sm text-red-300">Type <span class="font-bold text-white">DELETE</span> to confirm:</p>
+                <input type="text"  name="confirmText"  required  pattern="DELETE"  placeholder="DELETE"  class="w-full px-3 py-2 rounded-md bg-black/40 border border-white/10 text-sm outline-none focus:border-red-400 transition">
+            </div>
+            <div class="flex justify-between items-center text-sm">
+                <a th:href="@{/profile}" class="text-gray-400 hover:text-white transition">  Cancel </a>
+                <button type="submit" class="px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 transition font-semibold">Delete Account</button>
             </div>
         </form>
     </div>
-    <script th:src="@{/js/particle.js}"></script>
 </body>
 </html>

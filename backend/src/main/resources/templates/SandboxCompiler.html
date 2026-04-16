@@ -1,28 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/SandboxCompiler.css}">
-    <title>Document</title>
+    <title>Sandbox Compiler • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <div class="div0">
-        <div class="div1">
-            <form th:action="@{/SandboxCompiler}" method="post">
-                <p><textarea name="code" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Paste your code here" th:text="${code}"></textarea></p>
-                <select name="language">
-                    <option value="java" th:selected="${language == 'java'}">Java</option>
-                    <option value="python" th:selected="${language == 'python'}">Python</option>
-                </select>
-                <button type="submit">Run</button>
+
+<body class="text-white font-mono min-h-screen flex flex-col">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg">
+        <div class="text-xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">Sandbox Compiler ⚡</div>
+        <a th:href="@{/home}" class="text-sm text-gray-300 hover:text-cyan-400 transition"> ← Back</a>
+    </nav>
+    <main class="flex-1 grid md:grid-cols-2 gap-6 px-6 py-8">
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg flex flex-col space-y-4">
+            <h2 class="text-lg font-bold">Code Editor</h2>
+            <form th:action="@{/SandboxCompiler}" method="post" class="flex flex-col flex-1 space-y-4">
+                <textarea name="code" rows="18" placeholder="Write or paste your code here..." th:text="${code}" class="flex-1 w-full px-3 py-2 rounded-md bg-black/60 border border-white/10 text-xs outline-none focus:border-red-400 transition"></textarea>
+                <div class="flex justify-between items-center">
+                    <select name="language"  class="px-3 py-2 rounded bg-black/50 border border-white/10 text-sm">
+                        <option value="java" th:selected="${language == 'java'}">Java</option>
+                        <option value="python" th:selected="${language == 'python'}">Python</option>
+                    </select>
+                    <button type="submit" class="px-4 py-2 bg-red-500/80 hover:bg-red-600 transition rounded-md text-sm font-semibold">Run ▶</button>
+                </div>
             </form>
-        </div>
-        <div class="div2">
-            <p><textarea name="output" th:text="${output}" readonly placeholder="Output will appear here"></textarea></p>
-        </div>
-        <a class="back-link" th:href="@{/home}">Back</a>
-    </div>
-    <script th:src="@{/js/particle.js}"></script>
+        </section>
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg flex flex-col space-y-4">
+            <h2 class="text-lg font-bold">Output 🖥️</h2>
+            <textarea name="output" readonly placeholder="Program output will appear here..." th:text="${output}" class="flex-1 w-full px-3 py-2 rounded-md bg-black/70 border border-white/10 text-xs text-green-300"></textarea>
+        </section>
+    </main>
 </body>
 </html>

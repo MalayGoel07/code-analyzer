@@ -1,47 +1,66 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/profile.css}">
-    <title>Profile</title>
+    <title>Profile • Coan-X</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+
+    <style>
+        body {background: radial-gradient(circle at top, #0f172a, #020617);}
+    </style>
 </head>
-<body>
-    <div class="profile-container">
-        <section class="profile-header">
-            <div class="avatar">Avatar</div>
-            <div class="user-info">
-                <h1 th:text="${user.name}">User Name</h1>
-                <p th:text="${user.email}">email@example.com</p>
+
+<body class="text-white font-mono min-h-screen">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg sticky top-0 z-50">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Coan-X 🚀</div>
+        <a th:href="@{/home}" class="text-sm text-gray-300 hover:text-cyan-400 transition">← Back</a>
+    </nav>
+    <div class="max-w-4xl mx-auto px-6 py-10 space-y-8">
+        <section class="flex items-center gap-6 p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-black font-bold text-lg">U</div>
+            <div>
+                <h1 class="text-xl font-bold" th:text="${user.name}">User Name</h1>
+                <p class="text-gray-400 text-sm" th:text="${user.email}">email@example.com</p>
             </div>
         </section>
-        <section class="personal-info-card">
-            <h2>Personal Information</h2>
-            <div class="info-field">
-                <label>Full Name</label>
-                <input type="text" th:value="${user.name}" readonly>
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold">Personal Information</h2>
+                <a th:href="@{/editform1}" class="text-cyan-400 text-sm hover:underline">Edit</a>
             </div>
-            <div class="info-field">
-                <label>Email</label>
-                <input type="email" th:value="${user.email}" readonly>
-            </div>
-            <a th:href="@{/editform1}" class="edit">Edit</a>
-        </section>
-        <section class="security-section">
-            <h2>Security</h2>
-            <div class="security-item">
-                <label>Change Password</label>
-                <a th:href="@{/editform2}" class="edit">Edit</a>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-sm text-gray-400">Full Name</label>
+                    <input type="text" th:value="${user.name}" readonly class="w-full mt-1 px-3 py-2 rounded-md bg-black/40 border border-white/10 text-sm outline-none">
+                </div>
+                <div>
+                    <label class="text-sm text-gray-400">Email</label>
+                    <input type="email" th:value="${user.email}" readonly class="w-full mt-1 px-3 py-2 rounded-md bg-black/40 border border-white/10 text-sm outline-none">
+                </div>
             </div>
         </section>
-        <section class="danger-zone">
-            <h2>Danger Zone</h2>
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold">Security</h2>
+                <a th:href="@{/editform2}" class="text-blue-400 text-sm hover:underline">Change Password</a>
+            </div>
+        </section>
+        <section class="p-6 rounded-xl bg-red-500/10 border border-red-500/30 backdrop-blur-lg space-y-4">
+            <h2 class="text-lg font-bold text-red-400">Danger Zone</h2>
             <form th:action="@{/profile/delete}" method="get">
-                <button type="submit" class="delete-btn">Delete Account</button>
+                <button type="submit" class="px-4 py-2 bg-red-500/80 hover:bg-red-600 transition rounded-md text-sm"> Delete Account </button>
             </form>
         </section>
-        <a th:href="@{/home}" class="logout-button">Back</a>
+
     </div>
-    <script th:src="@{/js/particle.js}"></script>
+
 </body>
 </html>

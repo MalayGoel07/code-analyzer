@@ -1,34 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/adminhome.css}">
-    <title>Admin Home</title>
-</head>
-<body>
-    <main class="page-shell">
-        <section class="hero-card">
-            <p class="eyebrow">Admin Panel</p>
-            <h1>Admin Home</h1>
-            <p class="subtitle">Manage the daily problem flow and jump quickly to the tools you need.</p>
-        </section>
+    <title>Admin Home • Coan-X</title>
 
-        <section class="action-grid">
-            <a class="action-card" th:href="@{/admin/profile}">
-                <h2>Profile</h2>
-                <p>Open profile details and account information.</p>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
+</head>
+
+<body class="text-white font-mono min-h-screen flex flex-col">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg">
+        <div class="text-xl font-bold bg-gradient-to-r from-red-400 to-pink-500 bg-clip-text text-transparent">Admin Panel ⚡</div>
+        <div class="flex gap-6 text-sm">
+            <a th:href="@{/admin/profile}" class="text-gray-300 hover:text-red-400 transition"> Profile</a>
+            <a th:href="@{/admin/logout}" class="text-gray-300 hover:text-pink-400 transition"> Logout</a>
+        </div>
+    </nav>
+    <main class="flex-1 px-6 py-10 max-w-6xl mx-auto space-y-10">
+        <section class="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <p class="text-xs text-red-400 uppercase tracking-widest">Admin Panel</p>
+            <h1 class="text-2xl font-bold mt-1">Admin Home</h1>
+            <p class="text-gray-400 mt-2 text-sm"> Manage problems, monitor platform activity, and control system features.</p>
+        </section>
+        <section class="grid md:grid-cols-3 gap-4">
+            <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                <p class="text-xs text-gray-400">Total Users</p>
+                <h2 class="text-xl font-bold text-red-400">--</h2>
+            </div>
+            <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                <p class="text-xs text-gray-400">Problems Added</p>
+                <h2 class="text-xl font-bold text-pink-400">--</h2>
+            </div>
+            <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                <p class="text-xs text-gray-400">Feedback Count</p>
+                <h2 class="text-xl font-bold text-purple-400">--</h2>
+            </div>
+        </section>
+        <section class="grid md:grid-cols-3 gap-6">
+            <a th:href="@{/admin/profile}"
+               class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 hover:border-red-400 transition">
+                <h2 class="text-lg font-bold">Profile</h2>
+                <p class="text-gray-400 text-sm mt-2"> View admin account details and settings.</p>
+                <span class="text-red-400 text-sm mt-4 inline-block">Open →</span>
             </a>
-            <a class="action-card" th:href="@{/admin/problems/new}">
-                <h2>Add Problem Statements</h2>
-                <p>Upload the daily question and keep past questions saved.</p>
+            <a th:href="@{/admin/problems/new}"
+               class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg hover:scale-105 hover:border-pink-400 transition">
+                <h2 class="text-lg font-bold">Add Problem</h2>
+                <p class="text-gray-400 text-sm mt-2"> Create daily coding problems and manage history.</p>
+                <span class="text-pink-400 text-sm mt-4 inline-block">Create →</span>
             </a>
-            <a class="action-card logout-card" th:href="@{/admin/logout}">
-                <h2>Logout</h2>
-                <p>End the admin session safely.</p>
+            <a th:href="@{/admin/logout}"
+               class="p-6 rounded-xl bg-red-500/20 border border-red-500/30 backdrop-blur-lg hover:scale-105 hover:bg-red-500/30 transition">
+                <h2 class="text-lg font-bold text-red-400">Logout</h2>
+                <p class="text-gray-300 text-sm mt-2"> End the admin session securely.</p>
+                <span class="text-red-300 text-sm mt-4 inline-block">Exit →</span>
             </a>
         </section>
     </main>
-    <script th:src="@{/js/particle.js}"></script>
 </body>
 </html>

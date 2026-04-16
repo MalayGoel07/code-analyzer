@@ -1,16 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="overscroll-none">
+
 <head>
-    <title th:text="${language}">Language</title>
-    <link rel="stylesheet" th:href="@{/css/language.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${language}">Language • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <h1 id="title"></h1>
-        <div class="meta">Programming Language Overview</div>
-        <div class="content" id="output"></div>
-        <a th:href="@{/detail}" class="back-btn">Back</a>
-    </div>
+
+<body class="text-white font-mono min-h-screen flex flex-col">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg sticky top-0 z-50">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Coan-X 🚀</div>
+        <a th:href="@{/detail}" class="text-sm text-gray-300 hover:text-cyan-400 transition">← Back</a>
+    </nav>
+    <main class="flex-1 max-w-5xl mx-auto px-6 py-10 space-y-8">
+        <section class="p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <h1 id="title" class="text-2xl font-bold"></h1>
+            <p class="text-gray-400 text-sm mt-2">Programming Language Overview</p>
+        </section>
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <div id="output" class="text-gray-300 text-sm leading-relaxed space-y-4">
+            </div>
+        </section>
+        <div class="flex justify-between items-center">
+            <a th:href="@{/detail}" class="text-sm text-gray-400 hover:text-cyan-400 transition">  ← Back</a>
+            <button onclick="scrollToTop()" class="px-4 py-2 bg-cyan-500/80 hover:bg-cyan-600 transition rounded-md text-sm">↑ Top</button>
+        </div>
+    </main>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
     <script th:src="@{/js/particle.js}"></script>
     <script th:src="@{/js/wiki.js}"></script>
 </body>

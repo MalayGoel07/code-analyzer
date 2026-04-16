@@ -9,9 +9,4 @@ public class WelcomeController {
     public String welcome(){
         return "welcome";
     }
-
-    @GetMapping("/adminlog")
-    public String adminlog() {
-        return "adminlog";
-    }
 }
