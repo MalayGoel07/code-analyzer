@@ -134,7 +134,7 @@
                 </div>
                 <span class="card-content mt-6 text-cyan-400 text-sm">Let's do this →</span>
             </a>
-            <a th:href="@{/Compare}" class="relative flex flex-col justify-between p-6 rounded-xl bg-blue-500/50 border border-white/10 backdrop-blur-lg hover:scale-105 transition overflow-hidden">
+            <a th:href="@{/compare}" class="relative flex flex-col justify-between p-6 rounded-xl bg-blue-500/50 border border-white/10 backdrop-blur-lg hover:scale-105 transition overflow-hidden">
                 <div class="float-bg" id="bg-comparator"></div>
                 <div class="card-content">
                     <h3 class="text-lg font-bold">Comparator</h3>
@@ -343,16 +343,17 @@
                 typed = '> ';
             } 
             else if (cmd === 'help') {
-                typed += '\nCommands: help, clear, analyze, roadmap, compare, compiler, practice, profile, feedback, about';
+                typed += '\nCommands: help, clear, analyze, roadmap, compare, compiler, practice, profile, feedback, about,logout';
             } 
             else if (cmd === 'roadmap') { window.location.href = '/roadmap'; } 
             else if (cmd === 'analyze') { window.location.href = '/code-comp'; }
-            else if (cmd === 'compare') { window.location.href = '/Compare'; } 
+            else if (cmd === 'compare') { window.location.href = '/compare'; } 
             else if (cmd === 'compiler') { window.location.href = '/SandboxCompiler'; } 
             else if (cmd === 'practice') { window.location.href = '/instant-metrics'; }
             else if (cmd === 'profile') { window.location.href = '/profile'; }
             else if (cmd === 'feedback') { window.location.href = '/feedback'; }
             else if (cmd === 'about') { window.location.href = '/about'; }
+            else if (cmd === 'logout') { window.location.href = '/logout'; }
             else {
                 typed += '\nCommand not found';
             }
