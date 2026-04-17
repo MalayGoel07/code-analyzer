@@ -343,7 +343,7 @@
                 typed = '> ';
             } 
             else if (cmd === 'help') {
-                typed += '\nCommands: help, clear, analyze, roadmap, compare, compiler, practice, profile, feedback, about,logout';
+                typed += '\nCommands: help, clear, ai, analyze, roadmap, compare, compiler, practice, profile, feedback, about,logout';
             } 
             else if (cmd === 'roadmap') { window.location.href = '/roadmap'; } 
             else if (cmd === 'analyze') { window.location.href = '/code-comp'; }
@@ -354,6 +354,7 @@
             else if (cmd === 'feedback') { window.location.href = '/feedback'; }
             else if (cmd === 'about') { window.location.href = '/about'; }
             else if (cmd === 'logout') { window.location.href = '/logout'; }
+            else if (cmd === 'ai') { window.location.href = '/ai'; }
             else {
                 typed += '\nCommand not found';
             }

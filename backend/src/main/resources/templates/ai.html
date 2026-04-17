@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" class="overscroll-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Analyzer • Coan-X</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+    </style>
+</head>
+
+<body class="text-white font-mono min-h-screen">
+    <nav class="flex items-center justify-between px-8 py-4 border-b border-white/10 bg-white/5 backdrop-blur-lg">
+        <div class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Coan-X 🚀</div>
+        <a href="/home" class="text-sm text-gray-300 hover:text-cyan-400 transition"> ← Back</a>
+    </nav>
+    <div class="max-w-6xl mx-auto px-6 py-10 space-y-8">
+        <section class="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg">
+            <h1 class="text-2xl font-bold">AI Code Analyzer</h1>
+            <p class="text-gray-400 mt-2">Paste your code and get instant AI-powered insights.</p>
+        </section>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg space-y-4">
+                <h2 class="font-semibold text-lg">Input Code</h2>
+                <textarea id="code"  class="w-full h-64 p-3 rounded-lg bg-black/40 border border-white/10 text-sm outline-none focus:border-cyan-400 resize-none"  placeholder="Paste your code here..."></textarea>
+                <button onclick="analyze()" class="w-full py-2 bg-cyan-500/80 hover:bg-cyan-600 transition rounded-md text-sm font-semibold"> Run</button>
+            </div>
+            <div class="p-5 rounded-xl bg-white/5 border border-white/10 backdrop-blur-lg space-y-4">
+                <h2 class="font-semibold text-lg">Analysis Result</h2>
+                <textarea id="output" readonly class="w-full h-64 p-3 rounded-lg bg-black/40 border border-white/10 text-sm text-green-400 outline-none resize-none" placeholder="Result will appear here..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function analyze() {
+            const code = document.getElementById("code").value;
+            const res = await fetch("/ai/analyze", {
+                method: "POST",
+                headers: {"Content-Type": "text/plain"},body: code}
+            );
+            const result = await res.text();
+            document.getElementById("output").value = result;
+        }
+    </script>
+</body>
+</html>

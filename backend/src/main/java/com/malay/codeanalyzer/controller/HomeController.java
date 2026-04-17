@@ -76,6 +76,11 @@ public class HomeController {
         return "roadmap";
     }
 
+    @GetMapping("/ai")
+    public String ai() {
+        return "ai";
+    }
+
     @GetMapping("/detail")
     public String detail() {
         return "detail";
