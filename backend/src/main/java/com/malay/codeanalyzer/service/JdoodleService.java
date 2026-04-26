@@ -1,11 +1,11 @@
 package com.malay.codeanalyzer.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class JdoodleService {
@@ -16,10 +16,7 @@ public class JdoodleService {
     private String clientSecret;
 
     public String runCode(String code, String language) {
-        if (clientId == null || clientId.isBlank() || clientSecret == null || clientSecret.isBlank()) {
-            return "JDoodle credentials are not configured.";
-        }
-
+        if (clientId == null || clientId.isBlank() || clientSecret == null || clientSecret.isBlank()) {return "JDoodle credentials are not configured.";}
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://api.jdoodle.com/v1/execute";
 

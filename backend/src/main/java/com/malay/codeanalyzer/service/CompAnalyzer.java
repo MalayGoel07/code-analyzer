@@ -84,25 +84,54 @@ public class CompAnalyzer {
     }
 
     private String estimateComplexity(List<String> lines) {
-    int loopCount = 0;
-    int maxDepth = 0;
-    boolean hasMid = false;
-    boolean hasBoundsUpdate = false;
-    String functionName = null;
-    for (String raw : lines) {
-        String line = raw.trim();
-        if (line.startsWith("def ")) {functionName = line.split("\\(")[0].replace("def", "").trim();}
-        if (line.startsWith("for ") || line.startsWith("while ") ||line.contains("for(") || line.contains("while(")) {loopCount++;}
-        if (line.matches(".*\\b(max|min|sum|filter|map|sorted)\\s*\\(.*")) {maxDepth = Math.max(maxDepth, 1);}
-        if (functionName != null && line.contains(functionName + "(")) {maxDepth = Math.max(maxDepth, 1);}
-        if (line.contains("mid")) {hasMid = true;}
-        if ((line.contains("left") && line.contains("=")) ||(line.contains("right") && line.contains("="))) {hasBoundsUpdate = true;}
+        int loopCount = 0;
+        int maxDepth = 0;
+        boolean hasMidpointCalculation = false;
+        boolean hasShrinkingBounds = false;
+        boolean hasRecursiveBinarySearchCall = false;
+        String functionName = null;
+
+        for (String raw : lines) {
+            String line = raw.trim();
+            String normalizedLine = line.toLowerCase();
+
+            if (line.startsWith("def ")) {functionName = line.split("\\(")[0].replace("def", "").trim();}
+            if (line.startsWith("for ") || line.startsWith("while ") || line.contains("for(") || line.contains("while(")) {loopCount++;}
+            if (line.matches(".*\\b(max|min|sum|filter|map|sorted)\\s*\\(.*")) {maxDepth = Math.max(maxDepth, 1);}
+            if (functionName != null && line.contains(functionName + "(")) {maxDepth = Math.max(maxDepth, 1);}
+            hasMidpointCalculation = hasMidpointCalculation || hasMidpointCalculation(normalizedLine);
+            hasShrinkingBounds = hasShrinkingBounds || hasShrinkingSearchBounds(normalizedLine);
+            hasRecursiveBinarySearchCall = hasRecursiveBinarySearchCall|| hasRecursiveBinarySearchCall(line, normalizedLine);
+        }
+
+        boolean hasBinarySearchPattern = (hasMidpointCalculation && hasShrinkingBounds)|| hasRecursiveBinarySearchCall;
+
+        if (hasBinarySearchPattern && (loopCount == 1 || maxDepth == 1)) {return "O(log n)";}
+        if (loopCount >= 2) {return "O(n^" + loopCount + ")";}
+        if (loopCount == 1 || maxDepth == 1) {return "O(n)";}
+        return "O(1)";
     }
-    if (hasMid && hasBoundsUpdate && (loopCount == 1 || maxDepth == 1)) {return "O(log n)";}
-    if (loopCount >= 2) return "O(n^" + loopCount + ")";
-    if (loopCount == 1 || maxDepth == 1) return "O(n)";
-    return "O(1)";
-}
+
+    private boolean hasMidpointCalculation(String normalizedLine) {
+        return normalizedLine.contains("mid")
+            || normalizedLine.contains("(left+right)/2")
+            || normalizedLine.contains("(low+high)/2")
+            || normalizedLine.contains("(start+end)/2")
+            || normalizedLine.contains("left+(right-left)/2")
+            || normalizedLine.contains("low+(high-low)/2")
+            || normalizedLine.contains("start+(end-start)/2")
+            || normalizedLine.contains("left+((right-left)/2)")
+            || normalizedLine.contains("low+((high-low)/2)")
+            || normalizedLine.contains("start+((end-start)/2)");
+    }
+
+    private boolean hasShrinkingSearchBounds(String normalizedLine) {
+        return normalizedLine.matches(".*\\b(left|low|start)\\s*=\\s*(mid\\s*\\+\\s*1|mid).*")|| normalizedLine.matches(".*\\b(right|high|end)\\s*=\\s*(mid\\s*-\\s*1|mid).*");
+    }
+
+    private boolean hasRecursiveBinarySearchCall(String line, String normalizedLine) {
+        return line.contains("(") && normalizedLine.contains("mid")&& (normalizedLine.contains("left") || normalizedLine.contains("right")|| normalizedLine.contains("low") || normalizedLine.contains("high")|| normalizedLine.contains("start") || normalizedLine.contains("end"));
+    }
 
     private long countComments(List<String> lines) {
         int count = 0;
@@ -132,30 +161,21 @@ public class CompAnalyzer {
     private String generateConclusion(String complexity1, String complexity2) {
         int rank1 = getComplexityRank(complexity1);
         int rank2 = getComplexityRank(complexity2);
-
-        if (rank1 == rank2) {
-            return "Both files have similar performance.";
-        }
-        if (rank1 < rank2) {
-            return "File1 is more efficient.";
-        }
+        if (rank1 == rank2) {return "Both files have similar performance.";}
+        if (rank1 < rank2) {return "File1 is more efficient.";}
         return "File2 is more efficient.";
     }
 
     private int getComplexityRank(String complexity) {
         if (complexity == null || complexity.isBlank()) {return Integer.MAX_VALUE;}
-
         String normalized = complexity.trim().toLowerCase();
         if ("o(1)".equals(normalized)) {return 1;}
         if ("o(log n)".equals(normalized)) {return 2;}
         if ("o(n)".equals(normalized)) {return 3;}
         if (normalized.startsWith("o(n^") && normalized.endsWith(")")) {
             String exponent = normalized.substring(4, normalized.length() - 1);
-            try {
-                return 3 + Integer.parseInt(exponent);
-            } catch (NumberFormatException ignored) {
-                return Integer.MAX_VALUE - 1;
-            }
+            try {return 3 + Integer.parseInt(exponent);}
+            catch (NumberFormatException ignored) {return Integer.MAX_VALUE - 1;}
         }
         return Integer.MAX_VALUE;
     }
